@@ -1,0 +1,47 @@
+<h1><%= yield(:header) %></h1>
+<%= form_for(@user, url: signup_path) do |f| %>
+
+<%= f.label :corporate_name, "屋号" %>
+<%= f.text_field :corporate_name, {class: 'form-under-line', :placeholder => "屋号を入力してください。（例.〇〇農園）" }%>
+
+<%= f.label :lastname, "名前（姓）" %>
+<%= f.text_field :lastname, {class: 'form-under-line', :placeholder => "名前を入力してください。（例.農園）" }%>
+
+<%= f.label :firstname, "名前（名）" %>
+<%= f.text_field :firstname, {class: ' form-under-line', :placeholder => "名前を入力してください。（例.太郎）" }%>
+
+<%= f.label :lastname_kana, "フリガナ（姓） " %>
+<%= f.text_field :lastname_phonetic, {class: ' form-under-line', :placeholder => "フリガナを入力してください。（例.ノウエン）" }%>
+
+<%= f.label :firstname_kana, "フリガナ（名） " %>
+<%= f.text_field :firstname_phonetic, {class: ' form-under-line', :placeholder => "フリガナを入力してください。（例.タロウ）" }%>
+
+<%= f.label :email, "メールアドレス" %>
+<%= f.email_field :email, {class: ' form-under-line', :placeholder => "メールアドレスを入力してください。（例.test@example.com）"} %>
+
+<%= f.label :phone, "電話番号" %>
+<%= f.text_field :phone,{ class: ' form-under-line', :placeholder => "09012345678" } %>
+
+<%= f.label :zipcode, "郵便番号" %>
+<%= f.text_field :zipcode, {class: ' form-under-line', :placeholder => "1234567"} %>
+
+<%= f.label :pref, "都道府県" %>
+<%= f.collection_select :pref, JpPrefecture::Prefecture.all, :name, :name, include_blank: true %>
+
+<%= f.label :city, "市区町村" %>
+<%= f.text_field :city, {class: ' form-under-line', :placeholder => "港区"} %>
+
+<%= f.label :street, "番地" %>
+<%= f.text_field :street, {class: ' form-under-line', :placeholder => "海岸２丁目６番３１"} %>
+
+<%= f.label :building, "建物等" %>
+<%= f.text_field :building, {class: ' form-under-line', :placeholder => "日建ビル"} %>
+
+<%= f.label :password, "パスワード（8文字以上）" %>
+<%= f.password_field :password, class: ' form-under-line password_form' %>
+
+<%= f.label :password_confirmation, "パスワード確認" %>
+<%= f.password_field :password_confirmation, class: ' form-under-line password_form' %>
+
+<%= button_tag class: "btn btn-primary" do %><%= yield(:button_text) %><% end %>
+<% end %>

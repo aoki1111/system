@@ -1,0 +1,17 @@
+ja:
+    activerecord:
+        attributes:
+            user:
+                corporate_name: '屋号'
+                lastname: '氏名（姓）'
+                firstname: '氏名（名）'
+                lastname_phonetic: 'フリガナ（姓）'
+                firstname_phonetic: 'フリガナ（名）'
+                email: 'メールアドレス'
+                phone: '電話番号'
+                password: 'パスワード'
+            event:
+                title: 'タイトル'
+                start: '出荷予定週'
+                quantity: '出荷予定数量'
+                remark: '出荷予定内容'
