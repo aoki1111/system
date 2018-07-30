@@ -1,0 +1,17 @@
+<div class="stock">
+    <div>
+        <div class="title">商品タイプ</div><div>：小品目BOX</div>
+    </div>
+    <% first_day = Date.today.beginning_of_year %>
+    <% path_day = few_item_box.shipment_week * 7 %>
+    <% week_day = first_day + path_day - first_day.cwday + 1 - 7 %>
+    <div>
+        <div class="title">出荷予定週</div><div>：<%= week_day.strftime("%m月%d日週出荷分") %></div>
+    </div>
+    <div>
+        <div class="title">出荷予定数</div><div>：<%= few_item_box.quantity %></div>
+    </div>
+    <div>
+        <div class="title">備考</div><div>：<%= few_item_box.remark %></div>
+    </div>
+</div>

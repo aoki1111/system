@@ -1,0 +1,2 @@
+class MiddleBox < Stock
+end

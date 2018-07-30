@@ -1,1 +1,26 @@
-<h1>Show</h1>
+<div class="side">
+
+</div>
+<div class="main user-profile">
+    <div>
+        <div class="title">屋号</div><div>：<%= @user.corporate_name %></div>
+    </div>
+    <div>
+        <div class="title">名前</div><div>：<%= @user.lastname %><%= @user.firstname %></div>
+    </div>
+    <div>
+        <div class="title">フリガナ</div><div>：<%= @user.lastname_phonetic %><%= @user.firstname_phonetic %></div>
+    </div>
+    <div>
+        <div class="title">郵便番号</div><div>：〒<%= @user.zipcode %></div>
+    </div>
+    <div>
+        <div class="title">住所</div><div>：<%= @user.pref %><%= @user.city %><%= @user.street %><%= @user.building %></div>
+    </div>
+    <div>
+        <div class="title">電話番号</div><div>：<%= @user.phone %></div>
+    </div>
+    <div>
+        <div class="title">Eメール</div><div>：<%= @user.email %></div>
+    </div>
+</div>

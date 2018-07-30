@@ -1,0 +1,2 @@
+class FewItemBox < Stock
+end
