@@ -20,4 +20,6 @@ Rails.application.routes.draw do
   resources :stocks, path: 'shipments/stocks'
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :orders, path: 'shipements/orders'
+  resources :middle_boxes, only: [:edit, :update]
+  resources :few_item_boxes,  only: [:edit, :update]
 end

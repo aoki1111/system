@@ -1,17 +1,31 @@
 <div class="stock">
-    <div>
-        <div class="title">商品タイプ</div><div>：BOX野菜 - Mサイズ</div>
+    <div class="stock-data">
+        <div>
+            <div class="title">商品タイプ</div><div class="data">：BOX野菜 - Mサイズ</div>
+        </div>
+        <% first_day = Date.today.beginning_of_year %>
+        <% path_day = middle_box.shipment_week * 7 %>
+        <% week_day = first_day + path_day - first_day.cwday + 1 - 7 %>
+        <div>
+            <div class="title">出荷予定週</div><div class="data">：<%= week_day.strftime("%m月%d日週出荷分") %></div>
+        </div>
+        <div>
+            <% if middle_box.edit_lock_at > Time.zone.now %>
+            <div class="title">出荷予定数</div>
+            <% else %>
+            <div class="title">出荷登録数</div>
+            <% end %>
+            <div class="data">：<%= middle_box.quantity %></div>
+        </div>
+        <div>
+            <div class="title">備考</div><div class="data">：<%= middle_box.remark %></div>
+        </div>
     </div>
-    <% first_day = Date.today.beginning_of_year %>
-    <% path_day = middle_box.shipment_week * 7 %>
-    <% week_day = first_day + path_day - first_day.cwday + 1 - 7 %>
-    <div>
-        <div class="title">出荷予定週</div><div>：<%= week_day.strftime("%m月%d日週出荷分") %></div>
-    </div>
-    <div>
-        <div class="title">出荷予定数</div><div>：<%= middle_box.quantity %></div>
-    </div>
-    <div>
-        <div class="title">備考</div><div>：<%= middle_box.remark %></div>
+    <div class="stock-controll">
+        <% if middle_box.edit_lock_at > Time.zone.now %>
+            <%= button_to edit_stock_path(middle_box),method: :get do %><%= icon('fas', 'edit') %><span>出荷予定編集</span><%= icon('fas', 'chevron-right') %><% end %>
+        <% else %>
+            <%= button_to edit_stock_path(middle_box),method: :get, disabled:true do %><%= icon('fas', 'shipping-fast') %><span>今週出荷分</span><%= icon('fas', 'chevron-right') %><% end %>
+        <% end %>
     </div>
 </div>

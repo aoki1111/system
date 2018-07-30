@@ -1,0 +1,29 @@
+<%= form_for @stock do | f | %>
+<div>
+    <%= f.label :type, "出荷品目" %>
+    <%= f.select :type, [["BOX野菜 - Mサイズ", "MiddleBox"], ["小品目BOX野菜", "FewItemBox" ]] %>
+</div>
+<div>
+    <%= f.label :shipment_week, "出荷予定週" %>
+    <% if controller.action_name == "new" %>
+    <%= f.select :shipment_week, @list %>
+    <% else %>
+    <% first_day = Date.today.beginning_of_year %>
+    <% path_day = @stock.shipment_week * 7 %>
+    <% week_day = first_day + path_day - first_day.cwday + 1 - 7 %>
+    <%= week_day.strftime("%m月%d日週出荷分") %>
+    <%= f.hidden_field :shipment_week, value:@stock.shipment_week %>
+    <% end %>
+</div>
+<div>
+    <%= f.label :quantity, "出荷予定数" %>
+    <%= f.number_field :quantity %>
+</div>
+<div>
+    <%= f.label :remark, "備考" %>
+    <%= f.text_area :remark, row:5 %>
+</div>
+<div class="submit">
+    <%= button_tag do %>出荷予定作成<% end %>
+</div>
+<% end %>

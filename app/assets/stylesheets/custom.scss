@@ -675,12 +675,49 @@ label {
 /* index */
 .stock {
     font-size:large;
-    margin-bottom:10px;
+    display: flex;
+    flex-direction: row;
+    border-bottom: solid 1px black;
+    padding:10px 0px;
+    justify-content: space-around;
+}
+.stock-data {
+    display: flex;
+    flex-direction: column;
     > div {
         display: flex;
-        flex-direction: row;
+        padding:10px 0px;
         .title {
             width:100px;
         }
     }
+}
+.stock-controll {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:0px 20px;
+    width:210px;
+    button {
+        cursor:pointer;
+        font-family: 'shunkashuutou';
+        font-size:large;
+        padding:5px;
+    }
+    i {
+        margin:0;
+        padding:0;
+    }
+    span {
+        margin:0px 5px;
+    }
+}
+
+[class*="-btn"] {
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    border:solid 1px black;
+    border-radius: 5px;
+    padding:5px;
 }

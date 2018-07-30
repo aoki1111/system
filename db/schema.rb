@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 2018_07_28_072326) do
     t.integer "quantity"
     t.integer "shipment_week"
     t.text "remark"
+    t.datetime "edit_lock_at"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

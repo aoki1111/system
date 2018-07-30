@@ -1,17 +1,31 @@
 <div class="stock">
-    <div>
-        <div class="title">商品タイプ</div><div>：小品目BOX</div>
+    <div class="stock-data">
+        <div>
+            <div class="title">商品タイプ</div><div class="data">：小品目BOX</div>
+        </div>
+        <% first_day = Date.today.beginning_of_year %>
+        <% path_day = few_item_box.shipment_week * 7 %>
+        <% week_day = first_day + path_day - first_day.cwday + 1 - 7 %>
+        <div>
+            <div class="title">出荷予定週</div><div class="data">：<%= week_day.strftime("%m月%d日週出荷分") %></div>
+        </div>
+        <div>
+            <% if few_item_box.edit_lock_at > Time.zone.now %>
+            <div class="title">出荷予定数</div>
+            <% else %>
+            <div class="title">出荷登録数</div>
+            <% end %>
+            <div class="data">：<%= few_item_box.quantity %></div>
+        </div>
+        <div>
+            <div class="title">備考</div><div class="data">：<%= few_item_box.remark %></div>
+        </div>
     </div>
-    <% first_day = Date.today.beginning_of_year %>
-    <% path_day = few_item_box.shipment_week * 7 %>
-    <% week_day = first_day + path_day - first_day.cwday + 1 - 7 %>
-    <div>
-        <div class="title">出荷予定週</div><div>：<%= week_day.strftime("%m月%d日週出荷分") %></div>
-    </div>
-    <div>
-        <div class="title">出荷予定数</div><div>：<%= few_item_box.quantity %></div>
-    </div>
-    <div>
-        <div class="title">備考</div><div>：<%= few_item_box.remark %></div>
+    <div class="stock-controll">
+        <% if few_item_box.edit_lock_at > Time.zone.now %>
+            <%= button_to edit_stock_path(few_item_box),method: :get do %><%= icon('fas', 'edit') %><span>出荷予定編集</span><%= icon('fas', 'chevron-right') %><% end %>
+        <% else %>
+            <%= button_to edit_stock_path(few_item_box),method: :get, disabled:true do %><%= icon('fas', 'shipping-fast') %><span>今週出荷分</span><%= icon('fas', 'chevron-right') %><% end %>
+        <% end %>
     </div>
 </div>

@@ -3,26 +3,6 @@
 </div>
 <div class="main stocks-new">
     <div class="form">
-        <%= form_for @stock do | f | %>
-        <div>
-            <%= f.label :type, "出荷品目" %>
-            <%= f.select :type, [["BOX野菜 - Mサイズ", "MiddleBox"], ["小品目BOX野菜", "FewItemBox" ]] %>
-        </div>
-        <div>
-            <%= f.label :shipment_week, "出荷予定週" %>
-            <%= f.select :shipment_week, @list %>
-        </div>
-        <div>
-            <%= f.label :quantity, "出荷予定数" %>
-            <%= f.number_field :quantity %>
-        </div>
-        <div>
-            <%= f.label :remark, "備考" %>
-            <%= f.text_area :remark, row:5 %>
-        </div>
-        <div class="submit">
-            <%= button_tag do %>出荷予定作成<% end %>
-        </div>
-        <% end %>
+        <%= render 'form' %>
     </div>
 </div>

@@ -1,0 +1,2 @@
+module FewItemBoxesHelper
+end
