@@ -1,0 +1,78 @@
+<%= form_for @postage do | f | %>
+<%= f.hidden_field :area, value:current_user.area %>
+<div>
+    <%= f.label :item_type, "発送する商品" %>
+    <%= f.select :item_type,[["BOX野菜 - Mサイズ","MiddleBox"],["小品目BOX","FewItemBox"]],:include_blank => true %>
+</div>
+<div>
+    <%= f.label :company, "運送会社" %>
+    <%= f.select :company,[["ヤマト運輸","Yamato"],["佐川急便","Sagawa"],["日本郵便","Jp"]],:include_blank => true %>
+</div>
+<div id="hokkaido">
+    <%= f.label :hokkaido, "北海道への送料" %>
+    <%= f.number_field :hokkaido %>
+</div>
+<div id="tohoku">
+    <%= f.label :touhoku, "東北への送料（日本郵便の方のみ）" %>
+    <%= f.number_field :touhoku %>
+</div>
+<div id="kitatouhoku">
+    <%= f.label :kitatouhoku, "北東北への送料" %>
+    <%= f.number_field :kitatouhoku %>
+</div>
+<div id="minamitohoku">
+    <%= f.label :minamitouhoku, "南東北への送料" %>
+    <%= f.number_field :minamitouhoku %>
+</div>
+<div id="kantou">
+    <%= f.label :kantou, "関東への送料" %>
+    <%= f.number_field :kantou %>
+</div>
+<div id="hokuriku">
+    <%= f.label :hokuriku, "北陸への送料" %>
+    <%= f.number_field :hokuriku %>
+</div>
+<div id="shinetsu">
+    <%= f.label :shinetsu, "信越への送料" %>
+    <%= f.number_field :shinetsu %>
+</div>
+<div id="tokyo">
+    <%= f.label :tokyo, "東京への送料（日本郵便の方のみ）" %>
+    <%= f.number_field :tokyo %>
+</div>
+<div id="chubu">
+    <%= f.label :chubu, "中部への送料" %>
+    <%= f.number_field :chubu %>
+</div>
+<div id="kansai">
+    <%= f.label :kansai, "関西への送料" %>
+    <%= f.number_field :kansai %>
+</div>
+<div id="chugoku">
+    <%= f.label :chugoku, "中国への送料" %>
+    <%= f.number_field :chugoku %>
+</div>
+<div id="shikoku">
+    <%= f.label :shikoku, "四国への送料" %>
+    <%= f.number_field :shikoku %>
+</div>
+<div id="kyushu">
+    <%= f.label :kyushu, "九州への送料" %>
+    <%= f.number_field :kyushu %>
+</div>
+<div id="kitakyusyu">
+    <%= f.label :kitakyushu, "北九州への送料（佐川急便の方のみ）" %>
+    <%= f.number_field :kitakyushu %>
+</div>
+<div id="minamikyusyu">
+    <%= f.label :minamikyushu, "南九州への送料（佐川急便の方のみ）" %>
+    <%= f.number_field :minamikyushu %>
+</div>
+<div id="okinawa">
+    <%= f.label :okinawa, "沖縄への送料" %>
+    <%= f.number_field :okinawa %>
+</div>
+<div class="submit">
+    <%= button_tag do %>設定を作成する<% end %>
+</div>
+<% end %>

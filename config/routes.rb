@@ -13,11 +13,11 @@ Rails.application.routes.draw do
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
-  get '/shipments/orders/pickup', to: 'orders#pickup'
+  post '/shipments/stocks/complete', to: 'stocks#complete'
   resources :users, :except => [:new,:create]
   resources :account_activations, only: [:edit]
-  resources :events, path: 'shipments/events'
   resources :stocks, path: 'shipments/stocks'
+  resources :postages, path: 'shipments/postages'
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :orders, path: 'shipements/orders'
   resources :middle_boxes, only: [:edit, :update]

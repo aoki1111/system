@@ -10,9 +10,21 @@ module StocksHelper
                 week_day = first_day + path_day - first_day.cwday + 1 - 7
                 list_element = [ week_day.strftime("%m月%d日週出荷分") , week_start_day.cweek + i ]
                 list.push(list_element)
-            end                
+            end
         end
         return list
     end
 
+    def stock_list
+        list = []
+        factor = [["BOX野菜 - Mサイズ", "MiddleBox"], ["小品目BOX野菜", "FewItemBox" ]]
+        postages = current_user.postages
+        for item in factor do
+            for postage in postages do
+                list.push(item) if postage.item_type == item[1]
+            end
+        end
+        return list
+    end
+    
 end

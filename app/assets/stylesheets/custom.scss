@@ -42,6 +42,7 @@ $gray-lighter: #dbdbdb;
 html {
     position: relative;
     height: 100%;
+    width: 100%;
     font-size: 62.5%;
 }
 
@@ -141,8 +142,24 @@ a {
 .side {
     width:300px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
     padding:10px 5px 0px 10px;
+    > div {
+        display: flex;
+        flex-direction: column;
+        font-size:large;
+        > div {
+            padding: 10px 0px;
+            a {
+                text-decoration: none;
+                color:black;
+            }
+            a:hover {
+                color:#ff4242;
+            }
+        }
+    }
 }
 
 /* ナビゲーション */
@@ -178,6 +195,9 @@ a {
 }
 
 /* ドロップダウンメニュー */
+header {
+    width:100vw;
+}
 .dropdown{
   list-style-type: none;
   padding: 0;
@@ -369,6 +389,8 @@ a {
     z-index: 99;
     opacity: 1;
 
+    font-size:large;
+
     margin: 0 auto;
     padding: 15px;
     margin-bottom: 20px;
@@ -381,10 +403,6 @@ a {
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
-
-    color: #a94442;
-    background-color: #f2dede;
-    border-color: #ebccd1;
     border: 1px solid;
 
     animation: fadeout 1s linear 3s 1;
@@ -671,6 +689,19 @@ label {
     }
 }
 
+/* login */
+.login {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    a {
+        color:#00abff;
+    }
+    a:hover {
+        color:#ff3b3b;
+    }
+}
+
 /* stocks */
 /* index */
 .stock {
@@ -692,11 +723,13 @@ label {
         }
     }
 }
-.stock-controll {
+.stocks-controll {
+    padding:0px 20px;
+}
+[class*="-controll"] {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding:0px 20px;
     width:210px;
     button {
         cursor:pointer;
@@ -720,4 +753,135 @@ label {
     border:solid 1px black;
     border-radius: 5px;
     padding:5px;
+}
+
+/* postages */
+.postages-index {
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+}
+.postages-controll {
+    padding:20px;
+}
+.postages-data {
+    width:60%;
+    font-size:large;
+}
+.postage-title {
+    padding:10px 10px;
+    border:solid 1px black;
+    display: flex;
+    flex-direction: row;
+    .empty-item {
+        flex:1;
+        height:0;
+    }
+    .data-open {
+        cursor:pointer;
+    }
+}
+.postage-data {
+    display: none;
+    border-right:solid 1px black;
+    border-bottom:solid 1px black;
+    border-left:solid 1px black;
+    background-color:white;
+    > div {
+        display: flex;
+        flex-direction: row;
+        padding:10px 20px;
+        .title {
+            width:80px;
+        }
+    }
+}
+.shipment-caution {
+    color:red;
+}
+.dashboard-stock {
+    display: flex;
+    flex-direction: row;
+    .dashboard-order,.dashboard-alert {
+        padding:10px;
+        width:50%;
+        > p {
+            font-size:x-large;
+            text-align: center;
+            padding-bottom: 20px;
+        }
+        > div {
+            margin-bottom:10px;
+        }
+    }
+}
+.dashboard-order {
+    .order-title {
+        padding :10px;
+        display: flex;
+        flex-direction: row;
+        font-size:large;
+        border:solid 1px black;
+        .shipment-incomplete,.shipment-complete{
+            padding:0px 10px;
+        }
+        .shipment-incomplete {
+            color:#ff3030;
+        }
+        .shipment-complete {
+            color:#30b5ff;
+        }
+        .empty-item {
+            flex:1;
+        }
+        .order-open {
+            cursor:pointer;
+        }
+    }
+}
+
+.order-data{
+    display: none;
+    background-color: white;
+    padding:0px 10px;
+    border-right:solid 1px black;
+    border-bottom:solid 1px black;
+    border-left:solid 1px black;
+    font-size:large;
+    > div {
+        display: flex;
+        flex-direction: row;
+        padding:10px 0px 5px 0px;
+        .title {
+            width:100px;
+        }
+    }
+    form {
+        padding:10px 0px;
+        text-align:center;
+        input {
+            margin:0;
+            padding:0;
+            font-size:large;
+        }
+        .trailing_id {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding:10px 0px 20px 0px;
+            .title {
+                width:50px;
+            }
+        }
+        button {
+            font-size:large;
+            padding:0px 5px;
+        }
+        .caution {
+            font-size: small;
+            padding:20px 0px 10px 0px;
+        }
+    }
 }

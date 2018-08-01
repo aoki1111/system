@@ -1,12 +1,12 @@
 <%= form_for @stock do | f | %>
 <div>
     <%= f.label :type, "出荷品目" %>
-    <%= f.select :type, [["BOX野菜 - Mサイズ", "MiddleBox"], ["小品目BOX野菜", "FewItemBox" ]] %>
+    <%= f.select :type, @stock_list ,:prompt => "配送価格が設定済みの商品が追加されます。" %>
 </div>
 <div>
     <%= f.label :shipment_week, "出荷予定週" %>
     <% if controller.action_name == "new" %>
-    <%= f.select :shipment_week, @list %>
+    <%= f.select :shipment_week, @week_list %>
     <% else %>
     <% first_day = Date.today.beginning_of_year %>
     <% path_day = @stock.shipment_week * 7 %>
@@ -23,6 +23,9 @@
     <%= f.label :remark, "備考" %>
     <%= f.text_area :remark, row:5 %>
 </div>
+<%= f.hidden_field :area, value:current_user.area %>
+<%= f.hidden_field :pref, value:current_user.pref %>
+<%= f.hidden_field :box_flag, value:@stock.box_flag %>
 <div class="submit">
     <%= button_tag do %>出荷予定作成<% end %>
 </div>

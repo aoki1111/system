@@ -1,5 +1,5 @@
 <h1><%= yield(:header) %></h1>
-<%= form_for(@user, url: signup_path) do |f| %>
+
 
 <div>
     <%= f.label :corporate_name, "屋号" %>
@@ -38,6 +38,7 @@
     <%= f.label :pref, "都道府県" %>
     <%= f.collection_select :pref, JpPrefecture::Prefecture.all, :name, :name, include_blank: true %>
 </div>
+<%= f.hidden_field :area, value:@user.area %>
 <div>
     <%= f.label :city, "市区町村" %>
     <%= f.text_field :city, {class: ' form-under-line', :placeholder => "例.港区"} %>
@@ -61,5 +62,3 @@
 <div class="submit">
     <%= button_tag do %><%= yield(:button_text) %><% end %>
 </div>
-
-<% end %>

@@ -17,6 +17,8 @@ class StaticPagesController < ApplicationController
     end
 
     def dashboard
+        @week_stock = current_user.stocks.find_by(salable:Time.zone.now.beginning_of_week)
+        @orders = @week_stock.order_products
     end
 
     def shipments

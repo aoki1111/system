@@ -10,7 +10,7 @@
             <div class="title">出荷予定週</div><div class="data">：<%= week_day.strftime("%m月%d日週出荷分") %></div>
         </div>
         <div>
-            <% if few_item_box.edit_lock_at > Time.zone.now %>
+            <% if few_item_box.salable > Time.zone.now %>
             <div class="title">出荷予定数</div>
             <% else %>
             <div class="title">出荷登録数</div>
@@ -22,7 +22,7 @@
         </div>
     </div>
     <div class="stock-controll">
-        <% if few_item_box.edit_lock_at > Time.zone.now %>
+        <% if few_item_box.salable > Time.zone.now %>
             <%= button_to edit_stock_path(few_item_box),method: :get do %><%= icon('fas', 'edit') %><span>出荷予定編集</span><%= icon('fas', 'chevron-right') %><% end %>
         <% else %>
             <%= button_to edit_stock_path(few_item_box),method: :get, disabled:true do %><%= icon('fas', 'shipping-fast') %><span>今週出荷分</span><%= icon('fas', 'chevron-right') %><% end %>

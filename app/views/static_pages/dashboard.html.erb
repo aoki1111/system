@@ -1,1 +1,25 @@
 <% provide(:title, "ダッシュボード") %>
+<div class="side">
+
+</div>
+<div class="main dashboard">
+    <div class="dashboard-stock">
+        <div class="dashboard-order">
+            <% thisweek = Date.today.beginning_of_week %>
+            <p>今週（<%= thisweek.strftime("%m月%d日") %><span style="font-family:sans-serif;"><%= "\u301C" %></span>）出荷分の注文</p>
+            <% @orders.each do |order| %>
+            <div>
+                <%= render partial: "dashboard_stock", locals: {order: order}%>
+            </div>
+            <% end %>
+        </div>
+        <div class="dashboard-order">
+            <p>配送期限が近い注文</p>
+            <% @orders.each do |order| %>
+            <div>
+                <%= render partial: "dashboard_stock_caution", locals: {order: order}%>
+            </div>
+            <% end %>
+        </div>
+    </div>
+</div>

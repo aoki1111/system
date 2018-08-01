@@ -1,10 +1,12 @@
 class Stock < ApplicationRecord
     attr_accessor :select_type
+    belongs_to :user
+    has_many :order_products, class_name:"EcData::OrderProduct"
 
-    def calculate_lock_date
+    def calculate_sales_start
         first_day = Date.today.beginning_of_year
         path_day = self.shipment_week * 7
         week_day = first_day + path_day - first_day.cwday + 1 - 7
-        self.edit_lock_at = week_day
+        self.salable = week_day
     end
 end

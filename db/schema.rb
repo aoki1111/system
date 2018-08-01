@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_28_072326) do
+ActiveRecord::Schema.define(version: 2018_07_31_082239) do
 
   create_table "orders", force: :cascade do |t|
     t.string "lastname"
@@ -37,35 +37,45 @@ ActiveRecord::Schema.define(version: 2018_07_28_072326) do
   end
 
   create_table "postages", force: :cascade do |t|
-    t.string "type"
+    t.string "item_type"
+    t.string "company"
     t.integer "hokkaido"
+    t.integer "touhoku"
     t.integer "kitatouhoku"
     t.integer "minamitouhoku"
+    t.integer "hokuriku"
+    t.integer "shinetsu"
     t.integer "kantou"
     t.integer "tokyo"
-    t.integer "shinetsu"
     t.integer "chubu"
     t.integer "kansai"
     t.integer "chugoku"
     t.integer "shikoku"
+    t.integer "kyushu"
     t.integer "kitakyushu"
     t.integer "minamikyushu"
     t.integer "okinawa"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "area"
+    t.index ["id", "item_type"], name: "index_postages_on_id_and_item_type", unique: true
     t.index ["user_id"], name: "index_postages_on_user_id"
   end
 
   create_table "stocks", force: :cascade do |t|
     t.string "type"
+    t.boolean "box_flag"
     t.integer "quantity"
     t.integer "shipment_week"
     t.text "remark"
-    t.datetime "edit_lock_at"
+    t.datetime "salable"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "accept_order_count", default: 0
+    t.string "pref"
+    t.string "area"
     t.index ["shipment_week", "user_id"], name: "index_stocks_on_shipment_week_and_user_id", unique: true
     t.index ["user_id"], name: "index_stocks_on_user_id"
   end

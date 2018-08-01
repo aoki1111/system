@@ -34,6 +34,14 @@ class UsersController < ApplicationController
     def update
         @user = User.find(params[:id])
         if @user.update_attributes(user_params)
+            unless @user.stocks.blank?
+                stocks = @user.stocks
+                stocks.each do | stock |
+                    stock.area = @user.area
+                    stock.pref = @user.pref
+                    stock.save
+                end
+            end
             flash[:success] = "ユーザー情報の更新が完了しました。"
             redirect_to @user
         else
@@ -50,7 +58,7 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:corporate_name, :lastname,:firstname, :lastname_phonetic, :firstname_phonetic, :email, :phone,:zipcode, :pref,:city,:street,:building, :password, :password_confirmation)
+        params.require(:user).permit(:corporate_name, :lastname,:firstname, :lastname_phonetic, :firstname_phonetic, :email, :phone,:zipcode, :pref,:area,:city,:street,:building, :password, :password_confirmation)
     end
 
     def correct_user

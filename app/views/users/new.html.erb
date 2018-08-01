@@ -6,6 +6,8 @@
 </div>
 <div class="main user-new">
     <div class="form">
-        <%= render 'form' %>
+        <%= form_for(@user, url: signup_path) do |f| %>
+        <%= render partial: "form", locals: {f: f}%>
+        <% end %>
     </div>
 </div>

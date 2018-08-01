@@ -4,14 +4,15 @@
     </div>
     <% if logged_in? %>
     <ul class="dropdown">
-        <li class="dashboard"><%= link_to dashboard_path do %><%= icon('fas','tachometer-alt') %><span>ダッシュボード</span><% end %></li>
+        <li class="dashboard">
+            <%= link_to dashboard_path do %><%= icon('fas','tachometer-alt') %><span>ダッシュボード</span><% end %>
+        </li>
         <li class="shipping">
             <a href=""><%= icon('fas', 'box') %><%= icon('fas', 'box-open') %><span class="drop-anime">出荷情報管理</span></a>
             <ul>
                 <li><%= link_to stocks_path do %><%= icon('far', 'calendar-alt', class:"fa-lg") %><span>出荷予定一覧</span><% end %></li>
                 <li><%= link_to new_stock_path do %><%= icon('far', 'calendar-plus', class:"fa-lg") %><span>出荷予定作成</span><% end %></li>
-                <li><%= link_to new_order_path do %><%= icon('fas', 'truck') %><span>出荷完了報告</span><% end %></li>
-                <li><%= link_to "#" do %><%= icon('fas', 'history', class:"fa-lg") %><span style="margin-right:0.3rem;">出荷完了履歴</span><% end %></li>
+                <li><%= link_to postages_path do %><%= icon('fas', 'truck') %><span>送料設定一覧</span><% end %></li>
             </ul>
         </li>
         <li class="growth">

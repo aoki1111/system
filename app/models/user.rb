@@ -20,9 +20,10 @@ class User < ApplicationRecord
     validates :pref, presence:true
     validates :city, presence:true
     validates :street, presence: true
-    validates :building, presence: true, allow_nil: true
+    validates :building, presence: true, allow_blank: true
     has_many :stocks, dependent: :destroy
     has_many :orders
+    has_many :postages, dependent: :destroy
 
     class << self
         def digest(string)

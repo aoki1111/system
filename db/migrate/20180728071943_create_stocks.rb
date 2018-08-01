@@ -2,10 +2,11 @@ class CreateStocks < ActiveRecord::Migration[5.2]
   def change
       create_table :stocks do |t|
         t.string :type
+        t.boolean :box_flag
         t.integer :quantity
         t.integer :shipment_week
         t.text :remark
-        t.datetime :edit_lock_at
+        t.datetime :salable
         t.references :user, foreign_key: true
 
         t.timestamps

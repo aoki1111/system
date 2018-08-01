@@ -1,6 +1,13 @@
 <% provide(:title, 'ユーザー情報編集') %>
 <% provide(:header, 'ユーザー情報編集') %>
 <% provide(:button_text, 'ユーザー情報更新') %>
-<div>
-    <%=  render 'form' %>
+<div class="side">
+    <%= render 'side' %>
+</div>
+<div class="main user-edit">
+    <div class="form">
+        <%= form_for(@user) do |f| %>
+        <%= render partial: "form", locals: {f: f}%>
+        <% end %>
+    </div>
 </div>

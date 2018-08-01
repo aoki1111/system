@@ -1,0 +1,8 @@
+<div>
+    <div><%= link_to "ユーザー情報", user_path(current_user) %></div>
+    <div><%= link_to "ユーザー情報編集", edit_user_path(current_user) %></div>
+    <div><%= link_to "ログアウト", logout_path%></div>
+    <% if current_user.admin %>
+    <div><%= link_to "ユーザー一覧", users_path %></div>
+    <% end %>
+</div>

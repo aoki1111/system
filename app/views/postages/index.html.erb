@@ -1,0 +1,11 @@
+<div class="side">
+
+</div>
+<div class="main postages-index">
+    <div class="postages-controll">
+        <%= button_to new_postage_path, method: :get  do %><%= icon('fas', 'shipping-fast') %><span>送料設定作成</span><%= icon('fas', 'chevron-right') %><% end %>
+    </div>
+    <div class="postages-data">
+        <%= render @postages %>
+    </div>
+</div>
