@@ -8,7 +8,7 @@ class MiddleBoxesController < ApplicationController
 
     def edit
         @stock = Stock.find(params[:id])
-        if @stock.edit_lock_at > Time.zone.now
+        if @stock.salable > Time.zone.now
             redirect_to stocks_path
         else
             render 'edit'

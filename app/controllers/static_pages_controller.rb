@@ -18,7 +18,7 @@ class StaticPagesController < ApplicationController
 
     def dashboard
         @week_stock = current_user.stocks.find_by(salable:Time.zone.now.beginning_of_week)
-        @orders = @week_stock.order_products
+        @orders = @week_stock.order_products unless @week_stock.nil?
     end
 
     def shipments

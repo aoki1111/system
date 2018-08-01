@@ -7,7 +7,11 @@ class FewItemBoxesController < ApplicationController
 
     def edit
         @stock = Stock.find(params[:id])
-        if @stock.shipment_week
+        if @stock.salable > Time.zone.now
+            redirect_to stocks_path
+        else
+            render 'edit'
+        end
     end
     private
     def stock_params

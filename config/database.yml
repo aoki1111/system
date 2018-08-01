@@ -21,5 +21,10 @@ test:
   database: db/test.sqlite3
 
 production:
-  <<: *default
-  database: db/production.sqlite3
+  adapter: postgresql
+  encoding: utf8
+  pool: 25
+  host: aftech-agri-database.cjnkficlquy5.ap-northeast-1.rds.amazonaws.com
+  database: aftech_agri_db
+  username: aftech
+  password: <%= ENV['AFTECH_EC_DATABASE_PASSWORD'] %>

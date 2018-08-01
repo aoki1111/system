@@ -86,9 +86,22 @@ Rails.application.configure do
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
-    config.logger    = ActiveSupport::TaggedLogging.new(logger)
+    config.logger    = ActiveSupport::TaggedLogging.new("log/production.log", 5, 10*1024*1024)
   end
 
   # Do not dump schema after migrations.
-  config.active_record.dump_schema_after_migration = false
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  host = "https://agriculture.aftech.co.jp"
+  config.action_mailer.default_url_options = { host: host }
+  ActionMailer::Base.smtp_settings = {
+      :address        => 'aftech-mail.sakura.ne.jp',
+      :port           => '587',
+      :authentication => :plain,
+      :user_name      => 'info@shopping.aftech.co.jp',
+      :password       => ENV["EC_MAIL_PASSWORD"],
+      :domain         => 'shopping.aftech.co.jp',
+      :enable_starttls_auto => true,
+  }
+
 end
