@@ -1,4 +1,5 @@
 class PostagesController < ApplicationController
+    include PostagesHelper
 
     def index
         @postages = current_user.postages
@@ -6,6 +7,7 @@ class PostagesController < ApplicationController
 
     def new
         @postage = Postage.new
+        @postage_list = postage_list
     end
 
     def create

@@ -2,7 +2,7 @@
 <%= f.hidden_field :area, value:current_user.area %>
 <div>
     <%= f.label :item_type, "発送する商品" %>
-    <%= f.select :item_type,[["BOX野菜 - Mサイズ","MiddleBox"],["小品目BOX","FewItemBox"]],:include_blank => true %>
+    <%= f.select :item_type,@postage_list,:include_blank => true %>
 </div>
 <div class="error_message">
     <ul>
@@ -33,7 +33,7 @@
         <% end %>
     </ul>
 </div>
-<div id="tohoku">
+<div id="touhoku">
     <%= f.label :touhoku, "東北への送料（日本郵便の方のみ）" %>
     <%= f.number_field :touhoku %>
 </div>
@@ -199,6 +199,6 @@
     </ul>
 </div>
 <div class="submit">
-    <%= button_tag do %>設定を作成する<% end %>
+    <%= button_tag disabled:true, id:"postage_submit" do %>設定を作成する<% end %>
 </div>
 <% end %>
