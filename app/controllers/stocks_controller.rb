@@ -11,20 +11,25 @@ class StocksController < ApplicationController
     end
 
     def create
+        @week_list = calcurate_week_day
+        @stock_list = stock_list
         @stock = current_user.stocks.build(stock_params)
         @stock.calculate_sales_start
-        @stock.save
-        if @stock.salable < Time.zone.now
-            product = EcData::Product.find_by(class_name:@stock.type)
-            if product.stocks.nil?
-                product.stocks = @stock.quantity
+        if @stock.save
+            if @stock.salable < Time.zone.now
+                product = EcData::Product.find_by(class_name:@stock.type)
+                if product.stocks.nil?
+                    product.stocks = @stock.quantity
+                else
+                    product.stocks += @stock.quantity
+                end
+                product.save
+                redirect_to stocks_path, flash: { success: "ECサイトへの在庫の登録が完了しました。"}
             else
-                product.stocks += @stock.quantity
+                redirect_to stocks_path, flash: { success: "在庫の登録が完了しました。毎週月曜日にECサイトに在庫は紐付けされます。"}
             end
-            product.save
-            redirect_to stocks_path, flash: { success: "ECサイトへの在庫の登録が完了しました。"}
         else
-            redirect_to stocks_path, flash: { success: "在庫の登録が完了しました。毎週月曜日にECサイトに在庫は紐付けされます。"}
+            render 'new'
         end
     end
 
@@ -33,13 +38,20 @@ class StocksController < ApplicationController
     end
 
     def update
+        @week_list = calcurate_week_day
+        @stock_list = stock_list
         @stock = Stock.find(params[:id])
-        @stock.update_attributes(stock_params)
-        update_product_stocks(params[:type])
-        redirect_to stocks_path
+        if @stock.update_attributes(stock_params)
+            redirect_to stocks_path, flash: { success: "出荷予定の編集が完了しました"}
+        else
+            flash[:danger] = "出荷予定の編集に失敗しました。"
+            render 'edit'
+        end
     end
 
     def edit
+        @week_list = calcurate_week_day
+        @stock_list = stock_list
         @stock = Stock.find(params[:id])
     end
 

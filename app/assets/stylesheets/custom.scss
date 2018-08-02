@@ -162,6 +162,20 @@ a {
     }
 }
 
+.error_message {
+    margin-bottom: 10px;
+    ul {
+        display: flex;
+        padding:0;
+        list-style: none;
+        li {
+            color:red;
+            margin-right:10px;
+            font-size:15px;
+        }
+    }
+}
+
 /* ナビゲーション */
 /* ブランド */
 .brand {
@@ -390,10 +404,10 @@ header {
     opacity: 1;
 
     font-size:large;
-
-    margin: 0 auto;
-    padding: 15px;
-    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 
     box-sizing: border-box;
 
@@ -405,9 +419,9 @@ header {
     border-radius: 4px;
     border: 1px solid;
 
-    animation: fadeout 1s linear 3s 1;
+    animation: fadeout 1s linear 1s 1;
     animation-fill-mode: forwards;
-    -webkit-animation: fadeout 1s linear 3s 1;
+    -webkit-animation: fadeout 1s linear 1s 1;
     -webkit-animation-fill-mode: forwards;
 }
 @keyframes fadeout {
@@ -422,7 +436,16 @@ header {
 }
 
 .alert-info {
-    background-color: rgba(0, 217, 255, .5);
+    background-color: #2b60ff;
+    color:white;
+}
+.alert-success {
+    background-color: #00a145;
+    color:white;
+}
+.alert-danger {
+    background-color: #ff2b2b;
+    color:white;
 }
 
 

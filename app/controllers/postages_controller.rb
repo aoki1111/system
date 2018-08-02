@@ -10,8 +10,11 @@ class PostagesController < ApplicationController
 
     def create
         @postage = current_user.postages.build(postage_params)
-        @postage.save
-        redirect_to dashboard_path
+        if @postage.save
+            redirect_to dashboard_path, flash: { success: "送料の設定が完了しました。"}
+        else
+            render 'new'
+        end
     end
 
     def edit
@@ -20,8 +23,11 @@ class PostagesController < ApplicationController
 
     def update
         @postage = Postage.find(params[:id])
-        @postage.update_attributes(postage_params)
-        redirect_to postage_path(@postage)
+        if @postage.update_attributes(postage_params)
+            redirect_to postage_path(@postage)
+        else
+            render 'edit'
+        end
     end
 
     def show

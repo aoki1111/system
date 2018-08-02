@@ -1,7 +1,14 @@
 <%= form_for @stock do | f | %>
 <div>
-    <%= f.label :type, "出荷品目" %>
-    <%= f.select :type, @stock_list ,:prompt => "配送価格が設定済みの商品が追加されます。" %>
+    <%= f.label :type, "出荷品目（送料設定済みの商品が選択可能）" %>
+    <%= f.select :type, @stock_list ,:include_blank => true %>
+</div>
+<div class="error_message">
+    <ul>
+        <% @stock.errors.full_messages_for(:type).each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+    </ul>
 </div>
 <div>
     <%= f.label :shipment_week, "出荷予定週" %>
@@ -15,18 +22,32 @@
     <%= f.hidden_field :shipment_week, value:@stock.shipment_week %>
     <% end %>
 </div>
+<div class="error_message">
+    <ul>
+        <% @stock.errors.full_messages_for(:shipment_week).each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+    </ul>
+</div>
 <div>
     <%= f.label :quantity, "出荷予定数" %>
     <%= f.number_field :quantity %>
 </div>
+<div class="error_message">
+    <ul>
+        <% @stock.errors.full_messages_for(:quantity).each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+    </ul>
+</div>
 <div>
-    <%= f.label :remark, "備考" %>
+    <%= f.label :remark, "備考（出荷内容）" %>
     <%= f.text_area :remark, row:5 %>
 </div>
 <%= f.hidden_field :area, value:current_user.area %>
 <%= f.hidden_field :pref, value:current_user.pref %>
 <%= f.hidden_field :box_flag, value:@stock.box_flag %>
 <div class="submit">
-    <%= button_tag do %>出荷予定作成<% end %>
+    <%= button_tag do %><%= yield(:button_title) %><% end %>
 </div>
 <% end %>

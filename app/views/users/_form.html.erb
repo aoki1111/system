@@ -5,59 +5,158 @@
     <%= f.label :corporate_name, "屋号" %>
     <%= f.text_field :corporate_name, {class: 'form-under-line', :placeholder => "例.〇〇農園" }%>
 </div>
+<div class="error_message">
+    <ul>
+        <% @user.errors.full_messages_for(:corporate_name).each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+    </ul>
+</div>
 
 <div>
     <%= f.label :lastname, "名前（姓）" %>
     <%= f.text_field :lastname, {class: 'form-under-line', :placeholder => "例.農園" }%>
 </div>
+<div class="error_message">
+    <ul>
+        <% @user.errors.full_messages_for(:lastname).each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+    </ul>
+</div>
+
 <div>
     <%= f.label :firstname, "名前（名）" %>
     <%= f.text_field :firstname, {class: ' form-under-line', :placeholder => "例.太郎" }%>
+</div>
+<div class="error_message">
+    <ul>
+        <% @user.errors.full_messages_for(:firstname).each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+    </ul>
 </div>
 <div>
     <%= f.label :lastname_kana, "フリガナ（姓） " %>
     <%= f.text_field :lastname_phonetic, {class: ' form-under-line', :placeholder => "例.ノウエン" }%>
 </div>
+<div class="error_message">
+    <ul>
+        <% @user.errors.full_messages_for(:lastname_phonetic).each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+    </ul>
+</div>
 <div>
     <%= f.label :firstname_kana, "フリガナ（名） " %>
     <%= f.text_field :firstname_phonetic, {class: ' form-under-line', :placeholder => "例.タロウ" }%>
+</div>
+<div class="error_message">
+    <ul>
+        <% @user.errors.full_messages_for(:firstname_phonetic).each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+    </ul>
 </div>
 <div>
     <%= f.label :email, "メールアドレス" %>
     <%= f.email_field :email, {class: ' form-under-line', :placeholder => "例.test@example.com"} %>
 </div>
+<div class="error_message">
+    <ul>
+        <% @user.errors.full_messages_for(:email).each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+    </ul>
+</div>
 <div>
     <%= f.label :phone, "電話番号" %>
     <%= f.text_field :phone,{ class: ' form-under-line', :placeholder => "例.09012345678" } %>
+</div>
+<div class="error_message">
+    <ul>
+        <% @user.errors.full_messages_for(:phone).each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+    </ul>
 </div>
 <div>
     <%= f.label :zipcode, "郵便番号" %>
     <%= f.text_field :zipcode, {class: ' form-under-line', :placeholder => "例.1234567"} %>
 </div>
+<div class="error_message">
+    <ul>
+        <% @user.errors.full_messages_for(:zipcode).each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+    </ul>
+</div>
 <div>
     <%= f.label :pref, "都道府県" %>
     <%= f.collection_select :pref, JpPrefecture::Prefecture.all, :name, :name, include_blank: true %>
+</div>
+<div class="error_message">
+    <ul>
+        <% @user.errors.full_messages_for(:pref).each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+    </ul>
 </div>
 <%= f.hidden_field :area, value:@user.area %>
 <div>
     <%= f.label :city, "市区町村" %>
     <%= f.text_field :city, {class: ' form-under-line', :placeholder => "例.港区"} %>
 </div>
+<div class="error_message">
+    <ul>
+        <% @user.errors.full_messages_for(:cit).each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+    </ul>
+</div>
 <div>
     <%= f.label :street, "番地" %>
     <%= f.text_field :street, {class: ' form-under-line', :placeholder => "例.海岸２丁目６番３１"} %>
+</div>
+<div class="error_message">
+    <ul>
+        <% @user.errors.full_messages_for(:street).each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+    </ul>
 </div>
 <div>
     <%= f.label :building, "建物等" %>
     <%= f.text_field :building, {class: ' form-under-line', :placeholder => "例.日建ビル"} %>
 </div>
+<div class="error_message">
+    <ul>
+        <% @user.errors.full_messages_for(:building).each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+    </ul>
+</div>
 <div>
     <%= f.label :password, "パスワード（8文字以上）" %>
     <%= f.password_field :password, class: ' form-under-line password_form' %>
 </div>
+<div class="error_message">
+    <ul>
+        <% @user.errors.full_messages_for(:password).each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+    </ul>
+</div>
 <div>
     <%= f.label :password_confirmation, "パスワード確認" %>
     <%= f.password_field :password_confirmation, class: ' form-under-line password_form' %>
+</div>
+<div class="error_message">
+    <ul>
+        <% @user.errors.full_messages_for(:password_confirmation).each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+    </ul>
 </div>
 <div class="submit">
     <%= button_tag do %><%= yield(:button_text) %><% end %>

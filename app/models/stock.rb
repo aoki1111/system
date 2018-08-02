@@ -2,6 +2,9 @@ class Stock < ApplicationRecord
     attr_accessor :select_type
     belongs_to :user
     has_many :order_products, class_name:"EcData::OrderProduct"
+    validates :type, presence: true
+    validates :shipment_week, presence: true
+    validates :quantity, presence: true
 
     def calculate_sales_start
         first_day = Date.today.beginning_of_year
