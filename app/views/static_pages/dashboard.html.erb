@@ -7,10 +7,14 @@
         <div class="dashboard-order">
             <% thisweek = Date.today.beginning_of_week %>
             <p>今週（<%= thisweek.strftime("%m月%d日") %><span style="font-family:sans-serif;"><%= "\u301C" %></span>）出荷分の注文</p>
-            <% Array(@orders).each do |order| %>
-            <div>
-                <%= render partial: "dashboard_stock", locals: {order: order}%>
-            </div>
+            <% if current_user.stocks.blank? %>
+            <p>出荷情報登録後、注文が入ると表示されます。</p>
+            <% else %>
+                <% Array(@orders).each do |order| %>
+                <div>
+                    <%= render partial: "dashboard_stock", locals: {order: order}%>
+                </div>
+                <% end %>
             <% end %>
         </div>
         <div class="dashboard-order">

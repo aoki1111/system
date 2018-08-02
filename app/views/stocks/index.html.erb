@@ -3,7 +3,7 @@
 </div>
 <div class="main stocks-index">
     <% if @stocks.blank? %>
-    <p>現在出荷予定は登録されていません。</p>
+    <p style="font-size:large;">現在出荷予定は登録されていません。</p>
     <% else %>
     <%= render @stocks %>
     <% end %>
