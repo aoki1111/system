@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2018_07_31_082239) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "orders", force: :cascade do |t|
     t.string "lastname"
     t.string "firstname"
@@ -25,8 +28,8 @@ ActiveRecord::Schema.define(version: 2018_07_31_082239) do
     t.integer "quantity"
     t.boolean "shipment_complete", default: false
     t.string "trailing_id"
-    t.integer "user_id"
-    t.integer "stock_id"
+    t.bigint "user_id"
+    t.bigint "stock_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["area"], name: "index_orders_on_area"
@@ -55,7 +58,7 @@ ActiveRecord::Schema.define(version: 2018_07_31_082239) do
     t.integer "kitakyushu"
     t.integer "minamikyushu"
     t.integer "okinawa"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "area"
@@ -70,7 +73,7 @@ ActiveRecord::Schema.define(version: 2018_07_31_082239) do
     t.integer "shipment_week"
     t.text "remark"
     t.datetime "salable"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "accept_order_count", default: 0
@@ -109,4 +112,8 @@ ActiveRecord::Schema.define(version: 2018_07_31_082239) do
     t.index ["pref"], name: "index_users_on_pref"
   end
 
+  add_foreign_key "orders", "stocks"
+  add_foreign_key "orders", "users"
+  add_foreign_key "postages", "users"
+  add_foreign_key "stocks", "users"
 end
