@@ -14,7 +14,14 @@ class StocksController < ApplicationController
         @stock = current_user.stocks.build(stock_params)
         @stock.calculate_sales_start
         @stock.save
-        redirect_to stocks_path
+        if @stock.salable < Time.zone.now
+            product = EcData::Product.find_by(class_name:@stock.type)
+            product.stocks += @stock.quantity
+            product.save
+            redirect_to stocks_path, flash: { success: "ECサイトへの在庫の登録が完了しました。"}
+        else
+            redirect_to stocks_path, flash: { success: "在庫の登録が完了しました。毎週月曜日にECサイトに在庫は紐付けされます。"}
+        end
     end
 
     def show

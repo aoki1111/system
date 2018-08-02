@@ -1,5 +1,9 @@
-Hi <%= @user.lastname %><%= @user.firstname %>>,
+仮登録のご案内
 
-Welcome to the Sample App! Click on the link below to activate your account:
+<%= @user.corporate_name %>様、<%= @user.lastname %><%= @user.firstname %>様
+この度は当サービスへのご登録をいただき誠にありがとうございます。
+当メールはご登録いただいた方へのご登録の確認として送付させていただいております。
+ご登録にお間違いがない場合は下記の本登録の実施をお願いいたします。
+<%= link_to "本登録はこちらから", edit_account_activation_url(@user.activation_token, email: @user.email) %>
 
-<%= edit_account_activation_url(@user.activation_token, email: @user.email) %>
+ご登録に覚えがない場合は、お手数ですが本メールの破棄をよろしくお願いいたします。

@@ -1,9 +1,8 @@
-<h1>Sample App</h1>
+<h1>仮登録のご案内</h1>
 
-<p>Hi <%= @user.lastname %><%= @user.firstname %>,</p>
-
-<p>
-Welcome to the Sample App! Click on the link below to activate your account:
-</p>
-
-<%= link_to "Activate", edit_account_activation_url(@user.activation_token, email: @user.email) %>
+<p><%= @user.corporate_name %>様、<%= @user.lastname %><%= @user.firstname %>様</p>
+<p>この度は当サービスへのご登録をいただき誠にありがとうございます。</p>
+<p>当メールはご登録いただいた方へのご登録の確認として送付させていただいております。</p>
+<p>ご登録にお間違いがない場合は下記の本登録の実施をお願いいたします。</p>
+<%= link_to "本登録はこちらから", edit_account_activation_url(@user.activation_token, email: @user.email) %>
+<p style="margin-top:15px;">ご登録に覚えがない場合は、お手数ですが本メールの破棄をよろしくお願いいたします。</p>
