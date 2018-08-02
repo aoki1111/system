@@ -16,7 +16,11 @@ class StocksController < ApplicationController
         @stock.save
         if @stock.salable < Time.zone.now
             product = EcData::Product.find_by(class_name:@stock.type)
-            product.stocks += @stock.quantity
+            if product.stocks.nil?
+                product.stocks = @stock.quantity
+            else
+                product.stocks += @stock.quantity
+            end
             product.save
             redirect_to stocks_path, flash: { success: "ECサイトへの在庫の登録が完了しました。"}
         else
