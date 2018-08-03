@@ -419,9 +419,9 @@ header {
     border-radius: 4px;
     border: 1px solid;
 
-    animation: fadeout 1s linear 1s 1;
+    animation: fadeout 1s linear 2s 1;
     animation-fill-mode: forwards;
-    -webkit-animation: fadeout 1s linear 1s 1;
+    -webkit-animation: fadeout 1s linear 2s 1;
     -webkit-animation-fill-mode: forwards;
 }
 @keyframes fadeout {
