@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd" />
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
-<%= render partial: '/user_mailer/template_head' %>
+<%= render partial: 'template_head' %>
     <body>
         <% provide(:header_title,"Shipping Now！") %>
         <%= render partial: 'template_header' %>
@@ -51,6 +51,6 @@
               </td>
             </tr>
         </table>
-        <%= render partial: '/user_mailer/template_footer' %>
+        <%= render partial: 'template_footer' %>
     </body>
 </html>
