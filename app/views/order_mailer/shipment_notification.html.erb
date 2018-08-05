@@ -4,16 +4,23 @@
     <body>
         <% provide(:header_title,"Shipping Now！") %>
         <%= render partial: 'template_header' %>
-        <table width="600" height="700" border="0" cellpadding="0" cellspacing="0" style="width:600px;height:700px;border:none;margin:0;">
+        <table width="100%" height="700" border="0" cellpadding="0" cellspacing="0" style="width:100%;height:700px;border:none;margin:0;">
             <tr>
-              <td width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="width:100%;text-align:center;border:none;margin:0;color:black;">
+                <td width="5%" align="center" border="0" cellpadding="0" cellspacing="0" style="width:5%;text-align:center;border:none;margin:0;color:black;">
+
+                </td>
+                <td width="90%" align="left" border="0" cellpadding="0" cellspacing="0" style="width:100%;text-align:left;border:none;margin:0;color:black;">
                     <p style="margin:0;font-size:15px;"><%= @buyer_address.lastname %><%= @buyer_address.firstname %>様、この度はAftechShopでお買い上げいただきありがとうございます。</p>
                     <p style="margin:0;font-size:15px;"><%= @buyer_address.lastname %><%= @buyer_address.firstname %>様のご注文された商品が発送されました。</p>
                     <p style="margin:0;font-size:15px;">下記の伝票番号から商品の配送状況を確認可能です。</p>
-              </td>
+                </td>
+                <td width="5%" align="center" border="0" cellpadding="0" cellspacing="0" style="width:5%;text-align:center;border:none;margin:0;color:black;">
+                </td>
             </tr>
             <tr>
-                <td width="100%" align="left" border="0" cellpadding="0" cellspacing="0" style="width:100%;text-align:left;border:none;margin:0;color:black;">
+                <td width="5%" align="center" border="0" cellpadding="0" cellspacing="0" style="width:5%;text-align:center;border:none;margin:0;color:black;">
+                </td>
+                <td width="90%" align="left" border="0" cellpadding="0" cellspacing="0" style="width:100%;text-align:left;border:none;margin:0;color:black;">
                     <p>【配送商品】　　　：<%= @product.name %></p>
                     <p>【数量】　　　　　：<%= @order.quantity %></p>
                     <% if @postage.company == "Yamato" %>
@@ -28,6 +35,8 @@
                     <p>【郵便番号】　　　：<%= @sending_address.zipcode.insert(3,'-') %></p>
                     <p>【送付先住所】　　：<%= @sending_address.pref %><%= @sending_address.city %><%= @sending_address.street %><%= @sending_address.building %></p>
                     <p>【送付先電話番号】：<%= @sending_address.phone %></p>
+                </td>
+                <td width="5%" align="center" border="0" cellpadding="0" cellspacing="0" style="width:5%;text-align:center;border:none;margin:0;color:black;">
                 </td>
             </tr>
         </table>

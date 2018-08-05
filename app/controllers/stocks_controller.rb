@@ -62,7 +62,7 @@ class StocksController < ApplicationController
         order = EcData::OrderProduct.find_by(id:params[:order_id])
         order.trailing_id = params[:trailing_id]
         if order.save
-            order.send_shipment_complete
+            order.send_shipment_complete(current_user)
             redirect_to dashboard_path, flash: { success: "出荷完了報告が正常に行われました。"}
         else
             redirect_to dashboard_path, flash: { success: "出荷完了報告でエラーが発生しました。管理者に連絡してください。"}
