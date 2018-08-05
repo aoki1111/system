@@ -67,7 +67,7 @@ class StocksController < ApplicationController
             sending_address = order_list.sending_address unless buyer_address.same_sending_address
             product = EcData::Product.find_by(id:order.product_id)
             postage = current_user.postages.find_by(item_type:product.class_name)
-            OrderMailer.shiping_notification(order:order,buyer_address:buyer_address,sending_address:sending_address ,product:product,postage:postage)
+            OrderMailer.shipment_notification(order:order,buyer_address:buyer_address,sending_address:sending_address ,product:product,postage:postage)
             redirect_to dashboard_path, flash: { success: "出荷完了報告が正常に行われました。"}
         else
             redirect_to dashboard_path, flash: { success: "出荷完了報告でエラーが発生しました。管理者に連絡してください。"}
