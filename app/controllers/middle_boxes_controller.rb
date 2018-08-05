@@ -1,4 +1,5 @@
 class MiddleBoxesController < ApplicationController
+    before_action :logged_in_user
 
     def update
         @stock = Stock.find(params[:id])

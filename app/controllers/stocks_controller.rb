@@ -1,4 +1,5 @@
 class StocksController < ApplicationController
+    before_action :logged_in_user
     include StocksHelper
     def index
         @stocks = current_user.stocks
