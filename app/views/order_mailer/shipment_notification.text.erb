@@ -1,0 +1,18 @@
+<%= @buyer_address.lastname %><%= @buyer_address.firstname %>様、この度はAftechShopでお買い上げいただきありがとうございます。
+<%= @buyer_address.lastname %><%= @buyer_address.firstname %>様のご注文された商品が発送されました。
+下記の伝票番号から商品の配送状況を確認可能です。
+
+【配送商品】<%= @product.name %>
+【数量】　　<%= @order.quantity %>
+<% if @postage.company == "Yamato" %>
+【伝票番号】ヤマト運輸：<%= link_to "#{@order.trailing_id}", "http://jizen.kuronekoyamato.co.jp/jizen/servlet/crjz.b.NQ0010?id=#{@order.trailing_id}" %>
+<% elsif @postage.company == "Sagawa" %>
+【伝票番号】佐川急便：<%= link_to "#{@order.trailing_id}", "http://k2k.sagawa-exp.co.jp/p/web/okurijosearch.do?okurijoNo=#{@order.trailing_id}" %></p>
+<% elsif @postage.company == "Jp" %>
+【伝票番号】日本郵便：<%= link_to "#{@order.trailing_id}", "http://tracking.post.japanpost.jp/service/singleSearch.do?org.apache.struts.taglib.html.TOKEN=&searchKind=S002&locale=ja&SVID=&reqCodeNo1=#{@order.trailing_id}" %>
+<% else %>
+その他：<%= @order.trailing_id %>
+<% end %>
+【郵便番号】<%= @sending_address.zipcode %>
+【送付先住所】<%= @sending_address.pref %><%= @sending_address.city %><%= @sending_address.street %><%= @sending_address.building %>
+【送付先電話番号】<%= @order.trailing_id %>
