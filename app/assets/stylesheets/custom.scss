@@ -821,7 +821,9 @@ label {
     }
 }
 .shipment-caution {
-    color:red;
+    .order-title {
+        color:red;
+    }
 }
 .dashboard-stock {
     display: flex;

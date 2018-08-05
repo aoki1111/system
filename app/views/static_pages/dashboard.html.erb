@@ -1,4 +1,5 @@
 <% provide(:title, "ダッシュボード") %>
+
 <div class="side">
 
 </div>
@@ -10,7 +11,7 @@
             <% if current_user.stocks.blank? %>
             <p>出荷情報登録後、注文が入ると表示されます。</p>
             <% else %>
-                <% Array(@orders).each do |order| %>
+                <% Array(@normal_orders).each do |order| %>
                 <div>
                     <%= render partial: "dashboard_stock", locals: {order: order}%>
                 </div>
@@ -19,9 +20,9 @@
         </div>
         <div class="dashboard-order">
             <p>配送期限が近い注文</p>
-            <% Array(@orders).each do |order| %>
-            <div>
-                <%= render partial: "dashboard_stock_caution", locals: {order: order}%>
+            <% Array(@caution_orders).each do |order| %>
+            <div class="shipment-caution">
+                <%= render partial: "dashboard_stock", locals: {order: order}%>
             </div>
             <% end %>
         </div>

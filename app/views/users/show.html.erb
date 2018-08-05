@@ -12,7 +12,7 @@
         <div class="title">フリガナ</div><div>：<%= @user.lastname_phonetic %><%= @user.firstname_phonetic %></div>
     </div>
     <div>
-        <div class="title">郵便番号</div><div>：〒<%= @user.zipcode %></div>
+        <div class="title">郵便番号</div><div>：〒<%= @user.zipcode.insert(3,'-') %></div>
     </div>
     <div>
         <div class="title">住所</div><div>：<%= @user.pref %><%= @user.city %><%= @user.street %><%= @user.building %></div>

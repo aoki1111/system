@@ -18,7 +18,11 @@ class StaticPagesController < ApplicationController
 
     def dashboard
         @week_stock = current_user.stocks.find_by(salable:Time.zone.now.beginning_of_week)
-        @orders = @week_stock.order_products unless @week_stock.nil?
+         unless @week_stock.nil?
+            orders = @week_stock.order_products
+            @caution_orders = orders.where("bought_time < ?", Time.zone.now - 2.day)
+            @normal_orders = orders.where.not("bought_time < ?", Time.zone.now - 2.day)
+        end
     end
 
     def shipments

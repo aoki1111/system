@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd" />
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
+<%= render partial: '/user_mailer/template_head' %>
+    <body>
+        <% provide(:header_title,"Shipping Now！") %>
+        <%= render partial: 'template_header' %>
+        <table width="600" height="700" border="0" cellpadding="0" cellspacing="0" style="width:600px;height:700px;border:none;margin:0;">
+            <tr>
+              <td width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="width:100%;text-align:center;border:none;margin:0;color:black;">
+                <table width="80%" height="700" border="0" cellpadding="0" cellspacing="0" style="width:80%;height:700px;border:none;margin:0;">
+                      <tr>
+                        <td width="100%" align="left" border="0" cellpadding="0" cellspacing="0" style="width:100%;text-align:center;border:none;margin:0;color:black;">
+                            <p style="margin:0;font-size:15px;"><%= @buyer_address.lastname %><%= @buyer_address.firstname %>様、この度はAftechShopでお買い上げいただきありがとうございます。</p>
+                            <p style="margin:0;font-size:15px;"><%= @buyer_address.lastname %><%= @buyer_address.firstname %>様のご注文された商品が発送されました。</p>
+                            <p style="margin:0;font-size:15px;">下記の伝票番号から商品の配送状況を確認可能です。</p>
+                        </td>
+                    </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="width:100%;text-align:center;border:none;margin:0;color:black;">
+                  <table width="80%" height="700" border="0" cellpadding="0" cellspacing="0" style="width:80%;height:700px;border:none;margin:0;">
+                        <tr>
+                          <td width="20%" align="left" border="0" cellpadding="0" cellspacing="0" style="width:100%;text-align:center;border:none;margin:0;color:black;">
+                              <p>【配送商品】</p>
+                              <p>【数量】</p>
+                              <p>【伝票番号】</p>
+                              <p>【郵便番号】</p>
+                              <p>【送付先住所】</p>
+                              <p>【送付先電話番号】</p>
+                          </td>
+                         <td width="80%" align="left" border="0" cellpadding="0" cellspacing="0" style="width:100%;text-align:center;border:none;margin:0;color:black;">
+                              <p><%= @product.name %></p>
+                              <p><%= @order.quantity %></p>
+                              <% if @postage.company == "Yamato" %>
+                              <p>ヤマト運輸：<%= link_to "#{@order.trailing_id}", "http://jizen.kuronekoyamato.co.jp/jizen/servlet/crjz.b.NQ0010?id=#{@order.trailing_id}" %></p>
+                              <% elsif @postage.company == "Sagawa" %>
+                              <p>佐川急便：<%= link_to "#{@order.trailing_id}", "http://k2k.sagawa-exp.co.jp/p/web/okurijosearch.do?okurijoNo=#{@order.trailing_id}" %></p>
+                              <% elsif @postage.company == "Jp" %>
+                              <p>日本郵便：<%= link_to "#{@order.trailing_id}", "http://tracking.post.japanpost.jp/service/singleSearch.do?org.apache.struts.taglib.html.TOKEN=&searchKind=S002&locale=ja&SVID=&reqCodeNo1=#{@order.trailing_id}" %></p>
+                              <% else %>
+                              <p>その他：<%= @order.trailing_id %></p>
+                              <% end %>
+                              <p><%= @sending_address.zipcode %></p>
+                              <p><%= @sending_address.pref %><%= @sending_address.city %><%= @sending_address.street %><%= @sending_address.building %></p>
+                              <p><%= @order.trailing_id %></p>
+                          </td>
+                      </tr>
+                  </table>
+              </td>
+            </tr>
+        </table>
+        <%= render partial: '/user_mailer/template_footer' %>
+    </body>
+</html>

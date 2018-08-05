@@ -38,6 +38,8 @@ gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
 gem 'jp_prefecture'
 gem 'font-awesome-sass'
+gem 'lol_dba'
+gem 'whenever', require: false
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
@@ -78,4 +80,4 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
+gem 'sqlite3'

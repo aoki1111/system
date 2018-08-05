@@ -1,11 +1,7 @@
-<% order_list = EcData::OrderList.find_by(id:order.order_list_id) %>
-<% sending_address = EcData::SendingAddress.find_by(order_list_id:order_list.id) %>
-<% shipment_limit = order_list.bought_time + 3.day %>
-<% shipment_caution = order_list.bought_time + 2.day %>
-<% if Time.zone.now > shipment_caution %>
-<% else %>
+<% sending_address = BuyerAddress.find_by(order_list_id:order.order_list_id) %>
+<% shipment_limit = order.bought_time + 3.day %>
 <div class="order-title">
-    <div class="order-date"><%= order_list.bought_time.strftime("%m月%d日 %H:%M")%>の注文</div>
+    <div class="order-date"><%= order.bought_time.strftime("%m月%d日 %H:%M")%>の注文</div>
     <% if order.trailing_id.nil? %>
     <div class="shipment-incomplete">発送未完了</div>
     <% else %>
@@ -49,4 +45,3 @@
     </div>
     <% end %>
 </div>
-<% end %>

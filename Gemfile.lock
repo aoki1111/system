@@ -73,6 +73,7 @@ GEM
     chromedriver-helper (1.2.0)
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
+    chronic (0.10.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -107,6 +108,10 @@ GEM
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
       ruby_dep (~> 1.2)
+    lol_dba (2.1.5)
+      actionpack (>= 3.0)
+      activerecord (>= 3.0)
+      railties (>= 3.0)
     loofah (2.2.2)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -224,6 +229,8 @@ GEM
     websocket-driver (0.7.0)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
+    whenever (0.10.0)
+      chronic (>= 0.6.3)
     will_paginate (3.1.6)
     xpath (3.1.0)
       nokogiri (~> 1.8)
@@ -246,6 +253,7 @@ DEPENDENCIES
   jp_prefecture
   jquery-rails
   listen (>= 3.0.5, < 3.2)
+  lol_dba
   momentjs-rails
   pg
   puma (~> 3.11)
@@ -262,6 +270,7 @@ DEPENDENCIES
   unicorn
   web-console (>= 3.3.0)
   webpacker
+  whenever
   will_paginate
 
 RUBY VERSION
