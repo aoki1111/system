@@ -1,6 +1,6 @@
 class OrderMailer < ApplicationMailer
 
-    def shiping_notification(order:,buyer_address:,sending_address:nil,product:,postage:,)
+    def shipment_notification(order:,buyer_address:,sending_address:nil,product:,postage:,)
         @order = order
         @buyer_address = buyer_address
         if sending_address.nil?
