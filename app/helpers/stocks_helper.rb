@@ -17,7 +17,7 @@ module StocksHelper
 
     def stock_list
         list = []
-        factor = [["BOX野菜 - Mサイズ", "MiddleBox"], ["小品目BOX野菜", "FewItemBox" ]]
+        factor = [["季節の野菜セット", "MiddleBox"]]
         postages = current_user.postages
         for item in factor do
             for postage in postages do
@@ -26,5 +26,5 @@ module StocksHelper
         end
         return list
     end
-    
+
 end
