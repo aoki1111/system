@@ -24,6 +24,12 @@ class StaticPagesController < ApplicationController
             @caution_orders = orders.where("bought_time < ?", Time.zone.now - 2.day)
             @normal_orders = orders.where.not("bought_time < ?", Time.zone.now - 2.day)
         end
+        @last_week_stock = current_user.stocks.find_by(salable:Time.zone.now.beginning_of_week - 1.week)
+        unless @last_week_stock.nil?
+           last_orders = @last_week_stock.order_products
+           @last_caution_orders = last_orders.where("bought_time < ?", Time.zone.now - 2.day)
+           @last_normal_orders = last_orders.where.not("bought_time < ?", Time.zone.now - 2.day)
+       end
     end
 
     def shipments

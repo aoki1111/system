@@ -22,6 +22,7 @@ class PostagesController < ApplicationController
 
     def edit
         @postage = Postage.find(params[:id])
+        @postage_list = postage_list
     end
 
     def update

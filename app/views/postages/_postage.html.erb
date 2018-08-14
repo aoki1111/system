@@ -1,7 +1,7 @@
 <div class="postage-title">
     <div>
         <% if postage.item_type == "MiddleBox" %>
-        BOX野菜 - Mサイズ
+        季節の野菜セット
         <% elsif  postage.item_type == "FewItemBox"%>
         小品目BOX
         <% else %>
@@ -82,5 +82,8 @@
     <% end %>
     <div>
         <div class="title">沖縄</div><div>：<%= postage.okinawa.to_s(:delimited) %>円</div>
+    </div>
+    <div class="postage-button">
+        <%= link_to (button_tag "配送情報の編集", tyoe:"button"), edit_postage_path(postage) %>
     </div>
 </div>

@@ -19,7 +19,12 @@ Rails.application.routes.draw do
   resources :stocks, path: 'shipments/stocks'
   resources :postages, path: 'shipments/postages'
   resources :password_resets, only: [:new, :create, :edit, :update]
-  resources :orders, path: 'shipements/orders'
   resources :middle_boxes, only: [:edit, :update]
   resources :few_item_boxes,  only: [:edit, :update]
+
+  namespace :admin do
+      resources :users
+      resources :stocks
+      resources :postages
+  end
 end

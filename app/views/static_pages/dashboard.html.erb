@@ -8,6 +8,7 @@
         <div class="dashboard-order">
             <% thisweek = Date.today.beginning_of_week %>
             <p>今週（<%= thisweek.strftime("%m月%d日") %><span style="font-family:sans-serif;"><%= "\u301C" %></span>）出荷分の注文</p>
+            <div style="color:red;font-size:15px;">8月中は鮮度確保のためクール便での発送をお願いいたします。</div>
             <% if current_user.stocks.blank? %>
             <p>出荷情報登録後、注文が入ると表示されます。</p>
             <% else %>
@@ -21,6 +22,30 @@
         <div class="dashboard-order">
             <p>配送期限が近い注文</p>
             <% Array(@caution_orders).each do |order| %>
+            <div class="shipment-caution">
+                <%= render partial: "dashboard_stock", locals: {order: order}%>
+            </div>
+            <% end %>
+        </div>
+    </div>
+    <div class="dashboard-stock">
+        <div class="dashboard-order">
+            <% lastweek = Date.today.beginning_of_week - 1.week %>
+            <p>先週（<%= lastweek.strftime("%m月%d日") %><span style="font-family:sans-serif;"><%= "\u301C" %></span>）出荷分の注文</p>
+            <div style="color:red;font-size:15px;">8月中は鮮度確保のためクール便での発送をお願いいたします。</div>
+            <% if current_user.stocks.blank? %>
+            <p>出荷情報登録後、注文が入ると表示されます。</p>
+            <% else %>
+                <% Array(@last_normal_orders).each do |order| %>
+                <div>
+                    <%= render partial: "dashboard_stock", locals: {order: order}%>
+                </div>
+                <% end %>
+            <% end %>
+        </div>
+        <div class="dashboard-order">
+            <p>配送期限が近い注文</p>
+            <% Array(@last_caution_orders).each do |order| %>
             <div class="shipment-caution">
                 <%= render partial: "dashboard_stock", locals: {order: order}%>
             </div>

@@ -1,7 +1,7 @@
 <div class="stock">
     <div class="stock-data">
         <div>
-            <div class="title">商品タイプ</div><div class="data">：BOX野菜 - Mサイズ</div>
+            <div class="title">商品タイプ</div><div class="data">：季節の野菜セット</div>
         </div>
         <% first_day = Date.today.beginning_of_year %>
         <% path_day = middle_box.shipment_week * 7 %>
@@ -22,10 +22,6 @@
         </div>
     </div>
     <div class="stock-controll">
-        <% if middle_box.salable > Time.zone.now %>
             <%= button_to edit_stock_path(middle_box),method: :get do %><%= icon('fas', 'edit') %><span>出荷予定編集</span><%= icon('fas', 'chevron-right') %><% end %>
-        <% else %>
-            <%= button_to edit_stock_path(middle_box),method: :get, disabled:true do %><%= icon('fas', 'shipping-fast') %><span>今週出荷分</span><%= icon('fas', 'chevron-right') %><% end %>
-        <% end %>
     </div>
 </div>

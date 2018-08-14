@@ -702,12 +702,14 @@ label {
 /* user-show */
 .user-profile {
     font-size:large;
-    > div {
-        padding:10px 0px;
-        display: flex;
-        flex-direction: row;
-        .title {
-            width:80px;
+    .user-data {
+        > div {
+            padding:10px 0px;
+            display: flex;
+            flex-direction: row;
+            .title {
+                width:80px;
+            }
         }
     }
 }
@@ -820,6 +822,17 @@ label {
         }
     }
 }
+.postage-button {
+    display: flex;
+    justify-content: center;
+    button {
+        padding:10px;
+        font-size:large;
+        font-family:'Shunkashuutou';
+        border-radius:5px;
+        cursor:pointer;
+    }
+}
 .shipment-caution {
     .order-title {
         color:red;
@@ -908,5 +921,14 @@ label {
             font-size: small;
             padding:20px 0px 10px 0px;
         }
+    }
+}
+
+/* admin */
+/* postages */
+.admin-postages {
+    list-style: none;
+    li {
+        font-size:large;
     }
 }

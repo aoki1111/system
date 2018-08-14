@@ -1,0 +1,11 @@
+<% provide(:title, '送料設定一覧') %>
+<div class="side">
+    <%= render '/users/side' %>
+</div>
+<div class="main">
+    <h1>送料設定一覧</h1>
+    <ul class="admin-postages">
+        <%= render @postages %>
+    </ul>
+    <%= will_paginate @postages %>
+</div>

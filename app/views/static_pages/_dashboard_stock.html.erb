@@ -1,5 +1,15 @@
-<% sending_address = BuyerAddress.find_by(order_list_id:order.order_list_id) %>
+<% order_list = EcData::OrderList.find(order.order_list_id) %>
+<% payment = order_list.payment %>
+<% if order_list.buyer_address.same_sending_address %>
+<% sending_address = order_list.buyer_address %>
+<% else %>
+<% sending_address = order_list.sending_address %>
+<% end %>
+<% if payment.payment_process == "transfer" %>
+<% shipment_limit = payment.paid_at + 3.day  if payment.paid %>
+<% else %>
 <% shipment_limit = order.bought_time + 3.day %>
+<% end %>
 <div class="order-title">
     <div class="order-date"><%= order.bought_time.strftime("%m月%d日 %H:%M")%>の注文</div>
     <% if order.trailing_id.nil? %>
@@ -13,7 +23,13 @@
 <div class="order-data">
     <div>
         <div class="title">発送期日</div>
-        <div class="data" style="color:red">：<%= shipment_limit.strftime("%m月%d日 %H:%M") %></div>
+        <div class="data" style="color:red">
+            <% if !payment.payment_process == "transfer" || payment.paid %>
+            ：<%= shipment_limit.strftime("%m月%d日 23:59") %>
+            <% else %>
+            ：入金待ち
+            <% end %>
+        </div>
     </div>
     <div>
         <div class="title">郵便番号</div>
@@ -31,14 +47,25 @@
         <div class="title">数量</div>
         <div class="data">：<%= order.quantity %>個</div>
     </div>
+
     <%= form_tag '/shipments/stocks/complete' do %>
     <div class="trailing_id">
         <div>発送番号：</div>
+        <% if !payment.payment_process == "transfer" || payment.paid %>
         <div><%= text_field_tag :trailing_id, order.trailing_id, id:"trailing-id-#{order.id}" %></div>
+        <% else %>
+        <div><%= text_field_tag :trailing_id, "", id:"trailing-id-#{order.id}",disabled:true %></div>
+        <% end %>
     </div>
     <%= hidden_field_tag :order_id, order.id %>
     <div>
-        <%= button_tag disabled:true, confirm:"発送完了処理を実施します。", id:"trailing-id-#{order.id}-complete" do %><%= icon('fas','dolly') %>発送完了<% end %>
+        <%= button_tag disabled:true, confirm:"発送完了処理を実施します。", id:"trailing-id-#{order.id}-complete" do %>
+            <% if !payment.payment_process == "transfer" || payment.paid %>
+            <%= icon('fas','dolly') %>発送完了
+            <% else %>
+            入金待ち
+            <% end %>
+        <% end %>
     </div>
     <div class="caution">
         発送完了後、伝票番号(12桁)を入力して発送完了ボタンをおしてください。
