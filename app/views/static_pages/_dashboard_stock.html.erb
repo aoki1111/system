@@ -10,12 +10,20 @@
 <% else %>
 <% shipment_limit = order.bought_time + 3.day %>
 <% end %>
-<div class="order-title">
+<% if payment.payment_process == "transfer" && !payment.paid %>
+<div class="order-title shipment-waiting-pay">
+<% elsif order.trailing_id.nil? %>
+<div class="order-title shipment-incomplete">
+<% else %>
+<div class="order-title shipment-complete">
+<% end %>
     <div class="order-date"><%= order.bought_time.strftime("%m月%d日 %H:%M")%>の注文</div>
-    <% if order.trailing_id.nil? %>
-    <div class="shipment-incomplete">発送未完了</div>
+    <% if payment.payment_process == "transfer" && !payment.paid %>
+    <div style="padding:0px 20px;">入金待ち</div>
+    <% elsif order.trailing_id.nil? %>
+    <div style="padding:0px 20px;">発送未完了</div>
     <% else %>
-    <div class="shipment-complete">発送完了</div>
+    <div style="padding:0px 20px;">発送完了</div>
     <% end %>
     <div class="empty-item"></div>
     <div class="order-open">表示</div>
@@ -33,21 +41,36 @@
     </div>
     <div>
         <div class="title">郵便番号</div>
+        <% if payment.paid %>
         <div class="data">：〒<%= sending_address.zipcode.insert(3, '-') %></div>
+        <% else %>
+        <div class="data">：入金待ち</div>
+        <% end %>
     </div>
     <div>
         <div class="title">住所</div>
+        <% if payment.paid %>
         <div class="data">：<%= sending_address.pref %><%= sending_address.city %><%= sending_address.street %><%= sending_address.building %></div>
+        <% else %>
+        <div class="data">：入金待ち</div>
+        <% end %>
     </div>
     <div>
         <div class="title">名前</div>
+        <% if payment.paid %>
         <div class="data">：<%= sending_address.lastname %><%= sending_address.firstname %>様</div>
+        <% else %>
+        <div class="data">：入金待ち</div>
+        <% end %>
     </div>
     <div>
         <div class="title">数量</div>
+        <% if payment.paid %>
         <div class="data">：<%= order.quantity %>個</div>
+        <% else %>
+        <div class="data">：入金待ち</div>
+        <% end %>
     </div>
-
     <%= form_tag '/shipments/stocks/complete' do %>
     <div class="trailing_id">
         <div>発送番号：</div>

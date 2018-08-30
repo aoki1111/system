@@ -37,6 +37,7 @@ $gray-lighter: #dbdbdb;
 * {
     margin:0;
     padding:0;
+    box-sizing: border-box;
 }
 
 html {
@@ -748,19 +749,24 @@ label {
         }
     }
 }
-.stocks-controll {
-    padding:0px 20px;
-}
 [class*="-controll"] {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
     width:210px;
     button {
+        width:200px;
         cursor:pointer;
         font-family: 'shunkashuutou';
         font-size:large;
         padding:5px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        span {
+            width:110px;
+        }
     }
     i {
         margin:0;
@@ -854,28 +860,34 @@ label {
         }
     }
 }
-.dashboard-order {
+.dashboard-order,.stocks-show {
     .order-title {
         padding :10px;
         display: flex;
         flex-direction: row;
         font-size:large;
         border:solid 1px black;
-        .shipment-incomplete,.shipment-complete{
-            padding:0px 10px;
-        }
-        .shipment-incomplete {
-            color:#ff3030;
-        }
-        .shipment-complete {
-            color:#30b5ff;
-        }
+        color:white;
         .empty-item {
             flex:1;
         }
         .order-open {
             cursor:pointer;
         }
+    }
+    .shipment-waiting-pay {
+        background-color: #ffa654;
+    }
+    .shipment-incomplete {
+        background-color: #ff8080;
+    }
+    .shipment-complete {
+        background-color: #30b5ff;
+    }
+}
+.stocks-show {
+    > div {
+        margin-bottom:10px;
     }
 }
 
@@ -930,5 +942,42 @@ label {
     list-style: none;
     li {
         font-size:large;
+    }
+}
+
+/* paginate */
+ul.pagination {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    font-size:large;
+    margin-top:10px;
+    li {
+        padding:10px;
+        background-color:white;
+        border-style: solid;
+        border-color: #b9b9b9;
+        border-width: 1px 0px 1px 1px;
+        a {
+            color:#00baff;
+        }
+    }
+    li.active {
+        background-color:#b5b5b5;
+        a {
+            color:black;
+        }
+    }
+    li:first-child {
+        border-style: solid;
+        border-color: #b9b9b9;
+        border-width: 1px 0px 1px 1px;
+        border-radius:5px 0px 0px 5px;
+    }
+    li:last-child {
+        border-style: solid;
+        border-color: #b9b9b9;
+        border-width: 1px;
+        border-radius:0px 5px 5px 0px;
     }
 }

@@ -2,7 +2,7 @@ class StocksController < ApplicationController
     before_action :logged_in_user
     include StocksHelper
     def index
-        @stocks = current_user.stocks
+        @stocks = current_user.stocks.order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
     end
 
     def new
@@ -36,6 +36,7 @@ class StocksController < ApplicationController
 
     def show
         @stock = Stock.find(params[:id])
+        @orders = @stock.order_products
     end
 
     def update

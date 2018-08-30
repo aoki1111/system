@@ -21,7 +21,8 @@
             <div class="title">備考</div><div class="data">：<%= middle_box.remark %></div>
         </div>
     </div>
-    <div class="stock-controll">
+    <div class="stocks-controll">
             <%= button_to edit_stock_path(middle_box),method: :get do %><%= icon('fas', 'edit') %><span>出荷予定編集</span><%= icon('fas', 'chevron-right') %><% end %>
+            <%= button_to stock_path(middle_box),method: :get do %><%= icon('fas', 'info') %><span>発送確認</span><%= icon('fas', 'chevron-right') %><% end %>
     </div>
 </div>

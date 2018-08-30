@@ -1,2 +1,10 @@
-<h1>Stocks#show</h1>
-<p>Find me in app/views/stocks/show.html.erb</p>
+<div class="side">
+
+</div>
+<div class="main stocks-show">
+    <% @orders.each do |order| %>
+    <div>
+        <%= render partial: "static_pages/dashboard_stock", locals: {order: order}%>
+    </div>
+    <% end %>
+</div>

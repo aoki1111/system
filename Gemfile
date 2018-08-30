@@ -33,6 +33,7 @@ gem 'rails-i18n'
 gem 'font-awesome-sass'
 # Use pagination
 gem 'will_paginate'
+gem 'bootstrap-will_paginate', '~> 1.0'
 gem 'faker'
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
@@ -40,6 +41,7 @@ gem 'jp_prefecture'
 gem 'font-awesome-sass'
 gem 'lol_dba'
 gem 'whenever', require: false
+gem 'enum_help'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

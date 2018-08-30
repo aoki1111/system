@@ -34,3 +34,7 @@ ja:
                 shipment_week: '出荷予定週'
                 quantity: '出荷予定数'
                 remark: '備考（出荷内容）'
+    will_paginate:
+        previous_label: "&#8592; 前のページ"
+        next_label: "次のページ &#8594;"
+        page_gap: "&hellip;"
