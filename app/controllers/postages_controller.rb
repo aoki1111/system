@@ -8,7 +8,7 @@ class PostagesController < ApplicationController
 
     def new
         @postage = Postage.new
-        @postage_list = postage_list
+        @postage_list = product_list
     end
 
     def create
@@ -22,7 +22,7 @@ class PostagesController < ApplicationController
 
     def edit
         @postage = Postage.find(params[:id])
-        @postage_list = postage_list
+        @postage_list = product_list
     end
 
     def update
