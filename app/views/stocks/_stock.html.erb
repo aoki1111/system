@@ -1,22 +1,29 @@
+<% product = EcData::Product.find(stock.product_id) %>
 <div class="stock">
-    <div>
-        <div class="title">商品タイプ</div>
-        <% if  stock.type == "MiddleBox" %>
-        <div>：季節の野菜セット</div>
-        <% elsif stock.type == "FewItemBox" %>
-        <div>：小品目BOX</div>
-        <% end %>
+    <div class="stock-data">
+        <div>
+            <div class="title">品目</div><div class="data">：<%= product.short_name %></div>
+        </div>
+        <% first_day = Date.today.beginning_of_year %>
+        <% path_day = stock.shipment_week * 7 %>
+        <% week_day = first_day + path_day - first_day.cwday + 1 - 7 %>
+        <div>
+            <div class="title">出荷予定週</div><div class="data">：<%= week_day.strftime("%m月%d日週出荷分") %></div>
+        </div>
+        <div>
+            <% if stock.salable > Time.zone.now %>
+            <div class="title">出荷予定数</div>
+            <% else %>
+            <div class="title">出荷登録数</div>
+            <% end %>
+            <div class="data">：<%= stock.quantity %></div>
+        </div>
+        <div>
+            <div class="title">備考</div><div class="data">：<%= stock.remark %></div>
+        </div>
     </div>
-    <% first_day = Date.today.beginning_of_year %>
-    <% path_day = stock.shipment_week * 7 %>
-    <% week_day = first_day + path_day - first_day.cwday + 1 - 7 %>
-    <div>
-        <div class="title">出荷予定週</div><div>：<%= week_day.strftime("%m月%d日週出荷分") %></div>
-    </div>
-    <div>
-        <div class="title">出荷予定数</div><div>：<%= stock.quantity %></div>
-    </div>
-    <div>
-        <div class="title">備考</div><div>：<%= stock.remark %></div>
+    <div class="stocks-controll">
+            <%= button_to edit_stock_path(stock),method: :get do %><%= icon('fas', 'edit') %><span>出荷予定編集</span><%= icon('fas', 'chevron-right') %><% end %>
+            <%= button_to stock_path(stock),method: :get do %><%= icon('fas', 'info') %><span>発送確認</span><%= icon('fas', 'chevron-right') %><% end %>
     </div>
 </div>

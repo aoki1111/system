@@ -1,8 +1,8 @@
 class Stock < ApplicationRecord
     attr_accessor :select_type
     belongs_to :user
+    belongs_to :product, class_name:"EcData::Product"
     has_many :order_products, class_name:"EcData::OrderProduct"
-    validates :type, presence: true
     validates :shipment_week, presence: true
     validates :quantity, presence: true
 

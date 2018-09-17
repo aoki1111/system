@@ -1,2 +1,0 @@
-class FewItemBox < Stock
-end

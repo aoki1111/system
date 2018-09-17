@@ -8,29 +8,31 @@ class StocksController < ApplicationController
     def new
         @stock = current_user.stocks.build
         @week_list = calcurate_week_day
-        @stock_list = stock_list
+        @product_list = product_list
     end
 
     def create
         @week_list = calcurate_week_day
-        @stock_list = stock_list
+        @product_list = product_list
         @stock = current_user.stocks.build(stock_params)
         @stock.calculate_sales_start
-        if @stock.save
+        begin
+            @stock.save
+        rescue => e
+            logger.error(e)
+            redirect_to new_stock_path, flash: {danger: "指定した出荷情報は作成済みです。編集から修正をかけてください。"}
+        else
             if @stock.salable < Time.zone.now
-                product = EcData::Product.find_by(class_name:@stock.type)
-                if product.stocks.nil?
-                    product.stocks = @stock.quantity
+                product = EcData::Product.find(@stock.product_id)
+                if product.stock_counts.nil?
+                    product.stock_counts = @stock.quantity
                 else
-                    product.stocks += @stock.quantity
+                    product.update_attributes(stock_counts:Stock.where(salable:@stock.salable).sum(:quantity))
                 end
-                product.save
                 redirect_to stocks_path, flash: { success: "ECサイトへの在庫の登録が完了しました。"}
             else
                 redirect_to stocks_path, flash: { success: "在庫の登録が完了しました。毎週月曜日にECサイトに在庫は紐付けされます。"}
             end
-        else
-            render 'new'
         end
     end
 
@@ -41,9 +43,12 @@ class StocksController < ApplicationController
 
     def update
         @week_list = calcurate_week_day
-        @stock_list = stock_list
+        @product_list = product_list
         @stock = Stock.find(params[:id])
         if @stock.update_attributes(stock_params)
+            if @stock.salable == Time.zone.now.beginning_of_week
+                EcData::Product.find(@stock.product_id).update_attributes(stock_counts:Stock.where(salable:@stock.salable).sum(:quantity))
+            end
             redirect_to stocks_path, flash: { success: "出荷予定の編集が完了しました"}
         else
             flash[:danger] = "出荷予定の編集に失敗しました。"
@@ -53,7 +58,7 @@ class StocksController < ApplicationController
 
     def edit
         @week_list = calcurate_week_day
-        @stock_list = stock_list
+        @product_list = product_list
         @stock = Stock.find(params[:id])
     end
 
@@ -73,7 +78,7 @@ class StocksController < ApplicationController
 
     private
     def stock_params
-        params.require(:stock).permit(:pref,:area,:type,:box_flag,:quantity,:shipment_week,:remark)
+        params.require(:stock).permit(:pref,:area,:product_id,:quantity,:shipment_week,:remark)
     end
 
 end

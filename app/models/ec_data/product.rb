@@ -1,8 +1,16 @@
 module EcData
     class Product < EcData::Base
-        self.primary_key = "id"
         has_many :order_lists, through: :order_products
         has_many :order_products
-        has_many :product_images
+        has_many :stocks, foreign_key:"product_id"
+        has_many :product_items, foreign_key:"product_id"
+        has_many :users, through: :product_items, source: :user
+        def short_name
+            if name.length > 15
+                return name[0, 15] + '...'
+            else
+                return name
+            end
+        end
     end
 end

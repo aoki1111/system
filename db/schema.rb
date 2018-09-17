@@ -10,34 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_31_082239) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "orders", force: :cascade do |t|
-    t.string "lastname"
-    t.string "firstname"
-    t.string "zipcode"
-    t.string "area"
-    t.string "pref"
-    t.string "city"
-    t.string "street"
-    t.string "building"
-    t.string "phone"
-    t.integer "quantity"
-    t.boolean "shipment_complete", default: false
-    t.string "trailing_id"
-    t.bigint "user_id"
-    t.bigint "stock_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["area"], name: "index_orders_on_area"
-    t.index ["stock_id", "created_at"], name: "index_orders_on_stock_id_and_created_at"
-    t.index ["stock_id"], name: "index_orders_on_stock_id"
-    t.index ["user_id", "created_at"], name: "index_orders_on_user_id_and_created_at"
-    t.index ["user_id"], name: "index_orders_on_user_id"
-  end
+ActiveRecord::Schema.define(version: 2018_09_16_093501) do
 
   create_table "postages", force: :cascade do |t|
     t.string "item_type"
@@ -58,7 +31,7 @@ ActiveRecord::Schema.define(version: 2018_07_31_082239) do
     t.integer "kitakyushu"
     t.integer "minamikyushu"
     t.integer "okinawa"
-    t.bigint "user_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "area"
@@ -66,20 +39,30 @@ ActiveRecord::Schema.define(version: 2018_07_31_082239) do
     t.index ["user_id"], name: "index_postages_on_user_id"
   end
 
+  create_table "product_items", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_product_items_on_product_id"
+    t.index ["user_id", "product_id"], name: "index_product_items_on_user_id_and_product_id", unique: true
+    t.index ["user_id"], name: "index_product_items_on_user_id"
+  end
+
   create_table "stocks", force: :cascade do |t|
-    t.string "type"
-    t.boolean "box_flag"
     t.integer "quantity"
     t.integer "shipment_week"
     t.text "remark"
     t.datetime "salable"
-    t.bigint "user_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "accept_order_count", default: 0
     t.string "pref"
     t.string "area"
-    t.index ["shipment_week", "user_id"], name: "index_stocks_on_shipment_week_and_user_id", unique: true
+    t.integer "product_id"
+    t.index ["product_id"], name: "index_stocks_on_product_id"
+    t.index ["user_id", "product_id", "shipment_week"], name: "index_stocks_on_user_id_and_product_id_and_shipment_week", unique: true
     t.index ["user_id"], name: "index_stocks_on_user_id"
   end
 
@@ -112,8 +95,4 @@ ActiveRecord::Schema.define(version: 2018_07_31_082239) do
     t.index ["pref"], name: "index_users_on_pref"
   end
 
-  add_foreign_key "orders", "stocks"
-  add_foreign_key "orders", "users"
-  add_foreign_key "postages", "users"
-  add_foreign_key "stocks", "users"
 end

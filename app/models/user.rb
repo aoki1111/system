@@ -23,6 +23,8 @@ class User < ApplicationRecord
     validates :building, presence: true, allow_blank: true
     has_many :stocks, dependent: :destroy
     has_many :postages, dependent: :destroy
+    has_many :product_items
+    has_many :products, through: :product_items, class_name:"EcData::Product", source: :product
 
     class << self
         def digest(string)

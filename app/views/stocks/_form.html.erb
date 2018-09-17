@@ -1,7 +1,7 @@
 <%= form_for @stock do | f | %>
 <div>
-    <%= f.label :type, "出荷品目（送料設定済みの商品が選択可能）" %>
-    <%= f.select :type, @stock_list ,:include_blank => true %>
+    <%= f.label :product_id, "出荷品目（送料設定済みの商品が選択可能）" %>
+    <%= f.select :product_id, @product_list ,:include_blank => true %>
 </div>
 <div class="error_message">
     <ul>
@@ -46,7 +46,6 @@
 </div>
 <%= f.hidden_field :area, value:current_user.area %>
 <%= f.hidden_field :pref, value:current_user.pref %>
-<%= f.hidden_field :box_flag, value:@stock.box_flag %>
 <div class="submit">
     <%= button_tag do %><%= yield(:button_title) %><% end %>
 </div>

@@ -10,7 +10,7 @@
 <% else %>
 <% shipment_limit = order.bought_time + 3.day %>
 <% end %>
-<% if payment.payment_process == "transfer" && !payment.paid %>
+<% if !payment.paid %>
 <div class="order-title shipment-waiting-pay">
 <% elsif order.trailing_id.nil? %>
 <div class="order-title shipment-incomplete">
@@ -18,7 +18,7 @@
 <div class="order-title shipment-complete">
 <% end %>
     <div class="order-date"><%= order.bought_time.strftime("%m月%d日 %H:%M")%>の注文</div>
-    <% if payment.payment_process == "transfer" && !payment.paid %>
+    <% if !payment.paid %>
     <div style="padding:0px 20px;">入金待ち</div>
     <% elsif order.trailing_id.nil? %>
     <div style="padding:0px 20px;">発送未完了</div>
@@ -57,19 +57,15 @@
     </div>
     <div>
         <div class="title">名前</div>
-        <% if payment.paid %>
         <div class="data">：<%= sending_address.lastname %><%= sending_address.firstname %>様</div>
-        <% else %>
-        <div class="data">：入金待ち</div>
-        <% end %>
+    </div>
+    <div>
+        <div class="title">電話番号</div>
+        <div class="data">：<%= sending_address.phone %></div>
     </div>
     <div>
         <div class="title">数量</div>
-        <% if payment.paid %>
         <div class="data">：<%= order.quantity %>個</div>
-        <% else %>
-        <div class="data">：入金待ち</div>
-        <% end %>
     </div>
     <%= form_tag '/shipments/stocks/complete' do %>
     <div class="trailing_id">

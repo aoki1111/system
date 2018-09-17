@@ -741,6 +741,7 @@ label {
 .stock-data {
     display: flex;
     flex-direction: column;
+    width:400px;
     > div {
         display: flex;
         padding:10px 0px;
