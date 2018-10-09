@@ -4,5 +4,6 @@ module EcData
       has_one :buyer_address
       has_one :sending_address
       has_one :payment, class_name: "EcData::Payment"
+      has_many :order_products, class_name:"EcData::OrderProduct"
     end
 end

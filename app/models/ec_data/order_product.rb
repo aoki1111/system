@@ -1,6 +1,8 @@
 module EcData
     class OrderProduct < EcData::Base
         belongs_to :stock, class_name:"Stock"
+        belongs_to :order_list, class_name:"EcData::OrderList"
+        belongs_to :product, class_name:"EcData::Product"
 
         def send_shipment_complete(user)
             order_list = EcData::OrderList.find_by(id:self.order_list_id)

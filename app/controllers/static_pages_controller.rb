@@ -18,18 +18,8 @@ class StaticPagesController < ApplicationController
     end
 
     def dashboard
-        @week_stock = current_user.stocks.find_by(salable:Time.zone.now.beginning_of_week)
-         unless @week_stock.nil?
-            orders = @week_stock.order_products
-            @caution_orders = orders.where("bought_time < ?", Time.zone.now - 2.day)
-            @normal_orders = orders.where.not("bought_time < ?", Time.zone.now - 2.day)
-        end
-        @last_week_stock = current_user.stocks.find_by(salable:Time.zone.now.beginning_of_week - 1.week)
-        unless @last_week_stock.nil?
-           last_orders = @last_week_stock.order_products
-           @last_caution_orders = last_orders.where("bought_time < ?", Time.zone.now - 2.day)
-           @last_normal_orders = last_orders.where.not("bought_time < ?", Time.zone.now - 2.day)
-       end
+        stock_ids = Stock.where(user_id:current_user.id).pluck(:id) 
+        @dashboard_order = EcData::OrderProduct.eager_load(:order_list, :product, {order_list: :payment},{order_list: :buyer_address}, {order_list: :sending_address}).where(stock_id:stock_ids).where(trailing_id:nil).where(:order_list => {:payments => {paid: true}}).order("order_products.created_at DESC")
     end
 
     def shipments
