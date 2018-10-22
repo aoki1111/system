@@ -2,6 +2,7 @@
 
 </div>
 <div class="main stocks-show">
+    <h2><%= @stock.product.name %>　<%= @stock.salable.strftime("%Y年%m月%d日出荷週分") %></h2>
     <% @orders.each do |order| %>
     <div>
         <%= render partial: "static_pages/dashboard_stock", locals: {order: order}%>

@@ -1,3 +1,41 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.dashboard-order {
+    display: flex;
+    flex-direction: column;
+    font-size: large;
+    height:300px;
+    justify-content: space-around;
+    background-color: white;
+    padding:10px;
+    > div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .title {
+        width:100px;
+    }
+    > form {
+        > div {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        input {
+            margin: 0;
+            font-size: large;
+            margin-left:20px;
+        }
+        .trailing_id {
+            padding-bottom: 20px;
+        }
+        .shipping-complete {
+            justify-content: center;
+            button {
+                font-size: large;
+            }
+        }
+    }
+}

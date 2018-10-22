@@ -4,7 +4,12 @@
 
 </div>
 <div class="main dashboard">
-   <% @dashboard_order.each do | d_order | %>
-      <%= render partial: "unship_stock", locals: {order_product: d_order} %>
-   <% end %> 
+    <h1>未発送の注文一覧</h1>
+    <% if @dashboard_order.present? %>
+    <% @dashboard_order.each do | d_order | %>
+        <%= render partial: "unship_stock", locals: {order_product: d_order} %>
+    <% end %>
+    <% else %>
+    <div style="font-size:large;text-align:center;">未発送の注文は現在ありません</div>
+    <% end %>
 </div>

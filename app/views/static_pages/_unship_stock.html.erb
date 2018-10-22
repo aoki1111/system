@@ -2,9 +2,9 @@
 <% sending_address = order_product.order_list.buyer_address %>
 <% else %>
 <% sending_address = order_product.order_list.sending_address %>
-<% end %> 
+<% end %>
 <% shipment_limit = order_product.order_list.payment.paid_at + 3.days %>
-<div>
+<div class="dashboard-order">
     <div>
         <div class="title">購入日時</div>
         <div class="data" style="color:red">：<%= order_product.order_list.bought_time.strftime("%m月%d日 %H:%M") %></div>
@@ -39,17 +39,14 @@
     </div>
     <%= form_tag '/shipments/stocks/complete' do %>
     <div class="trailing_id">
-        <div>発送番号：</div>
+        <div class="title">発送番号</div>
         <div><%= text_field_tag :trailing_id, order_product.trailing_id, id:"trailing-id-#{order_product.id}" %></div>
     </div>
     <%= hidden_field_tag :order_id, order_product.id %>
-    <div>
+    <div class="shipping-complete">
         <%= button_tag disabled:true, confirm:"発送完了処理を実施します。", id:"trailing-id-#{order_product.id}-complete" do %>
             <%= icon('fas','dolly') %>発送完了
         <% end %>
-    </div>
-    <div class="caution">
-        発送完了後、伝票番号(12桁)を入力して発送完了ボタンをおしてください。
     </div>
     <% end %>
 </div>
