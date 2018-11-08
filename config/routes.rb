@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/company', to: 'static_pages#company'
   get '/privacy', to: 'static_pages#privacy'
   get '/dashboard', to: 'static_pages#dashboard'
+  get '/search_unship_order', to: 'static_pages#search_unship_order'
   get '/shipments', to:'static_pages#shipments'
   get '/introducing', to: 'static_pages#introducing'
   get '/signup', to: 'users#new'

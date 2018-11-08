@@ -4,12 +4,44 @@
 
 </div>
 <div class="main dashboard">
-    <h1>未発送の注文一覧</h1>
-    <% if @dashboard_order.present? %>
-    <% @dashboard_order.each do | d_order | %>
-        <%= render partial: "unship_stock", locals: {order_product: d_order} %>
-    <% end %>
-    <% else %>
-    <div style="font-size:large;text-align:center;">未発送の注文は現在ありません</div>
-    <% end %>
+	<%= form_tag('/search_unship_order', {:method => "get", :class => "search-query-form"}) do %>
+		<div class="input-query">
+			<%= label_tag :name, "購入者名" %>
+			<%= text_field_tag :name, "",{style:"flex:1;"} %>
+		</div>
+		<div class="input-query" style="align-items:flex-start;">
+			<%= check_box_tag :use_date, true, false, {style:"width:10px;", as: :boolean} %><%= label_tag :use_date, "日時の指定をする（オプション）", {style:"flex:1;padding-left:10px;"} %>
+		</div>
+		<div class="input-query">
+			<%= label_tag :start, "購入日時検索開始日" %>
+			<%= date_field_tag :start,"",{style:"flex:1;"} %>
+		</div>
+		<div class="input-query">
+			<%= label_tag :end, "購入日時検索終了日" %>
+			<%= date_field_tag :end,"",{style:"flex:1;"} %>
+		</div>
+		<button type="submit">検索</button>
+	<% end %>
+	<div class="order-container">
+		<div class="two-column">
+			<h1>未発送の注文一覧</h1>
+			<% if @dashboard_order.present? %>
+			<% @dashboard_order.each do | d_order | %>
+				<%= render partial: "unship_stock", locals: {order_product: d_order} %>
+			<% end %>
+			<% else %>
+			<div style="font-size:large;text-align:center;">未発送の注文は現在ありません</div>
+			<% end %>
+		</div>
+		<div class="two-column">
+			<h1>日時指定の注文一覧</h1>
+			<% if @delivery_desired_order.present? %>
+			<% @delivery_desired_order.each do | d_order | %>
+				<%= render partial: "unship_stock", locals: {order_product: d_order} %>
+			<% end %>
+			<% else %>
+			<div style="font-size:large;text-align:center;">未発送の注文は現在ありません</div>
+			<% end %>
+		</div>
+	</div>
 </div>
