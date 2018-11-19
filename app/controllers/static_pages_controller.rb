@@ -19,9 +19,9 @@ class StaticPagesController < ApplicationController
 
 	def dashboard
 		stock_ids = Stock.where(user_id:current_user.id).pluck(:id)
-		unship_order = EcData::OrderProduct.eager_load(:order_list, :product, {order_list: :payment},{order_list: :buyer_address}, {order_list: :sending_address}).where(stock_id:stock_ids).where(trailing_id:nil).where(:order_list => {:payments => {paid: true}}).order("order_products.bought_time DESC")
-		@dashboard_order = unship_order.where(:order_list => {:addresses => {desired_delivery: false}})
-		@delivery_desired_order = unship_order.where(:order_list => {:addresses => {desired_delivery: true}})
+		unship_order = EcData::OrderProduct.eager_load(:order_list, :product, {order_list: :payment},{order_list: :buyer_address}, {order_list: :sending_address}).where(stock_id:stock_ids).where(trailing_id:nil).where(:order_list => {:payments => {paid: true}})
+		@dashboard_order = unship_order.where(:order_list => {:addresses => {desired_delivery: false}}).order("order_products.bought_time DESC")
+		@delivery_desired_order = unship_order.where(:order_list => {:addresses => {desired_delivery: true}}).order("addresses.desired_delivery_date ASC")
 	end
 
 	def search_unship_order
