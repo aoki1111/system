@@ -1,0 +1,35 @@
+@media screen and (min-width: 813px) {
+  .admin-order-product_index {
+    .list-items--row__item {
+      flex: 1;
+    }
+    .list-items--row__item.quantity {
+      flex: 0.3 !important;
+    }
+    .list-items--row__item.sending-address {
+      flex: 2 !important;
+    }
+    .list-items--row__item.button {
+      flex: 0.5 !important;
+    }
+    .danger {
+      background-color: #ff4747;
+      color: white;
+      a {
+        color: white;
+      }
+      a:hover {
+        color: black;
+      }
+    }
+    .caution {
+      background-color: #ffdd47;
+      a {
+        color: #222222;
+      }
+      a:hover {
+        color: #ffffff;
+      }
+    }
+  }
+}

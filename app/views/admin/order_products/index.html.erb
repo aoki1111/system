@@ -1,0 +1,44 @@
+<div class="side">
+	<%= render 'layouts/dashboard_sidebar' %>
+</div>
+<div class="main admin-order-product_index">
+  <% if params[:desired_delivery] == "true" %>
+  <h1><%= @farmer.corporate_name %>　未発送の日時指定の注文一覧</h1>
+  <% elsif params[:unship_order] == "true" %>
+  <h1><%= @farmer.corporate_name %>　未発送の注文一覧</h1>
+  <% else %>
+  <h1><%= @farmer.corporate_name %>　注文一覧</h1>
+  <% end %>
+  <ul class="list-items--column sp-list-items--column">
+    <li class="list-items--column__item sp-list-items--column__item">
+      <%= link_to "注文一覧に切り替え", admin_user_order_products_path(user_id: @farmer.id) %>
+    </li>
+    <li class="list-items--column__item sp-list-items--column__item">
+      <%= link_to "未発送の注文一覧に切り替え", admin_user_order_products_path(user_id: @farmer.id, params: {unship_order: true}) %>
+    </li>
+    <li class="list-items--column__item sp-list-items--column__item">
+      <%= link_to "未発送の日時指定注文一覧に切り替え", admin_user_order_products_path(user_id: @farmer.id, params: {desired_delivery: true}) %>
+    </li>
+  </ul>
+  <ul class="list-items--column sp-list-items--column">
+    <ul class="list-items--row sp-list-items--row">
+      <li class="list-items--row__item sp-list-items--row__item">
+      <% if params[:desired_delivery] == "true" %>
+      配送指定日
+      <% else %>
+      購入日
+      <% end %>
+      </li>
+      <li class="list-items--row__item sp-list-items--row__item">商品名</li>
+      <li class="list-items--row__item sp-list-items--row__item quantity">数量</li>
+      <li class="list-items--row__item sp-list-items--row__item">発送先氏名</li>
+      <li class="list-items--row__item sp-list-items--row__item sending-address">発送先住所</li>
+      <li class="list-items--row__item sp-list-items--row__item quantity">入金</li>
+      <li class="list-items--row__item sp-list-items--row__item">配送指定</li>
+      <li class="list-items--row__item sp-list-items--row__item">発送状況</li>
+      <li class="list-items--row__item sp-list-items--row__item button"></li>
+      <li class="list-items--row__item sp-list-items--row__item button"></li>
+    </ul>
+    <%= render :partial => "op", :collection => @order_products %>
+  </ul>
+</div>

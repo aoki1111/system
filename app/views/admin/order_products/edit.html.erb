@@ -1,0 +1,62 @@
+<div class="side">
+	<%= render 'layouts/dashboard_sidebar' %>
+</div>
+<div class="main admin-order-product_edit">
+	<div>
+		<h1>注文情報の編集</h1>
+		<ul class="list-items--column sp-list-items--column">
+			<li class="list-items--column__item sp-list-items--column__item">
+				<ul class="list-items--row sp-list-items--row">
+					<li class="list-items--row__item label">購入日時</li>
+					<li class="list-items--row__item data"><%= @order_product.bought_time.strftime("%Y年%m月%d日 %H:%M") %></li>
+				</ul>
+				<% if @buyer_address.desired_delivery %>
+				<ul class="list-items--row sp-list-items--row">
+					<li class="list-items--row__item label">配送指定日時</li>
+					<li class="list-items--row__item data"><%= @buyer_address.shipment_date %>　<%= @buyer_address.shipment_time %></li>
+				</ul>
+				<% end %>
+				<ul class="list-items--row sp-list-items--row">
+					<li class="list-items--row__item label">注文内容</li>
+					<li class="list-items--row__item data"><%= @product.name %></li>
+				</ul>
+				<ul class="list-items--row sp-list-items--row">
+					<li class="list-items--row__item label">数量</li>
+					<li class="list-items--row__item data"><%= @order_product.quantity %>個</li>
+				</ul>
+			</li>
+		</ul>
+		<ul class="list-items--column sp-list-items--column">
+			<li class="list-items--column__item sp-list-items--column__item">
+				<ul class="list-items--row sp-list-items--row">
+					<li class="list-items--row__item label">購入者氏名</li>
+					<li class="list-items--row__item data"><%= @buyer_address.lastname %><%= @buyer_address.firstname %></li>
+				</ul>
+				<ul class="list-items--row sp-list-items--row">
+					<li class="list-items--row__item label">送付先氏名</li>
+					<li class="list-items--row__item data"><%= @sending_address.lastname %><%= @sending_address.firstname %></li>
+				</ul>
+				<ul class="list-items--row sp-list-items--row">
+					<li class="list-items--row__item label">送付先住所</li>
+					<li class="list-items--row__item data"><%= @sending_address.pref %><%= @sending_address.city %><%= @sending_address.street %><%= @sending_address.building %></li>
+				</ul>
+			</li>
+		</ul>
+		<%= form_for @order_product, :url => {action: "update"}, :html => {class: "form sp-form", style: "align-self:center;"} do |f| %>
+			<%= f.hidden_field :product_id, value: @product.id %>
+			<div class="form__select-items sp-form__select-items">
+				<label for="order_product_farmer_id" class="form__select-items__item--label sp-form__select-items__item--label">生産者名</label>
+				<%= collection_select :order_product, :farmer_id, @product_farmers, :id, :corporate_name, {:selected => @farmer.id} , {:class => "form__select-items__item--select sp-form__select-items__item--select"} %>
+			</div>
+			<div class="form__select-items sp-form__select-items shipment_week">
+				<label for="ec_data_order_product_stock_id" class="form__select-items__item--label sp-form__select-items__item--label">登録週</label>
+				<%= f.collection_select :stock_id, @farmer_stocks , :id, :salable, { :selected => @order_product.stock_id}, {:class => "form__select-items__item--select sp-form__select-items__item--select"} %>
+			</div>
+			<div class="button-container">
+				<button type="submit" class="action-button">
+					<span>更新する</span>
+				</button>
+			</div>
+		<% end %>
+	</div>
+</div>

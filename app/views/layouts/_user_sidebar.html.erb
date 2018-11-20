@@ -1,0 +1,10 @@
+<div>
+	<div><%= link_to "ユーザー情報", user_path(current_user) %></div>
+	<div><%= link_to "ユーザー情報編集", edit_user_path(current_user) %></div>
+	<div><%= link_to "ログアウト", logout_path%></div>
+	<% if current_user.admin %>
+	<div><%= link_to "ユーザー一覧", admin_users_path %></div>
+	<div><%= link_to "出荷予定一覧", admin_stocks_path %></div>
+	<div><%= link_to "送料設定一覧", admin_postages_path %></div>
+	<% end %>
+</div>

@@ -1,11 +1,11 @@
 <% provide(:title, '農家一覧') %>
 <div class="side">
-    <%= render 'side' %>
+	<%= render 'layout/user_sidebar' %>
 </div>
 <div class="main">
-    <h1>農家一覧</h1>
-    <ul class="users">
-        <%= render @users %>
-    </ul>
-    <%= will_paginate @users %>
+	<h1>農家一覧</h1>
+	<ul class="users">
+		<%= render @users %>
+	</ul>
+	<%= will_paginate @users %>
 </div>

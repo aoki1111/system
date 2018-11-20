@@ -1,7 +1,7 @@
 <% provide(:title, "パスワードリセット") %>
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3 form">
+  <div class="col-md-6 col-md-offset-3 oldform">
     <h1>パスワードの再設定手続き</h1>
     <%= form_for(:password_reset, url: password_resets_path) do |f| %>
       <%= f.label :email %>

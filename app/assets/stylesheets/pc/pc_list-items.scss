@@ -1,0 +1,22 @@
+@media screen and (min-width:813px) {
+  .list-items--column {
+    list-style: none;
+    display:flex;
+    flex-direction: column;
+    font-size: 1.5rem;
+  }
+  .list-items--column__item {
+    margin-bottom: 20px;
+  }
+  .list-items--row {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    align-items: center;
+  }
+  .list-items--row__item {
+    text-align: center;
+    padding: 5px;
+  }
+}

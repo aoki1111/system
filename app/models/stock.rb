@@ -6,6 +6,10 @@ class Stock < ApplicationRecord
     validates :shipment_week, presence: true
     validates :quantity, presence: true
 
+    def salable
+        return self[:salable].strftime("%m月%d日週 出荷分")
+    end
+
     def calculate_sales_start
         first_day = Date.today.beginning_of_year
         path_day = self.shipment_week * 7

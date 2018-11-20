@@ -1,13 +1,10 @@
 <% provide(:title, '新規会員登録') %>
 <% provide(:header, '新規会員登録') %>
 <% provide(:button_text, '会員登録') %>
-<div class="side">
-
-</div>
 <div class="main user-new">
-    <div class="form">
-        <%= form_for(@user, url: signup_path) do |f| %>
-        <%= render partial: "form", locals: {f: f}%>
-        <% end %>
-    </div>
+	<div class="oldform">
+		<%= form_for(@user, url: signup_path) do |f| %>
+		<%= render partial: "form", locals: {f: f}%>
+		<% end %>
+	</div>
 </div>

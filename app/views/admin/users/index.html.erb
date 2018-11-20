@@ -1,0 +1,14 @@
+<div class="side">
+	<%= render 'layouts/dashboard_sidebar' %>
+</div>
+<div class="main admin-user_index">
+  <ul class="list-items--column sp-list-items--column">
+    <ul class="list-items--row sp-list-items--row">
+      <li class="list-items--row__item sp-list-items--row__item">法人名</li>
+      <li class="list-items--row__item sp-list-items--row__item">未発送の箱数</li>
+      <li class="list-items--row__item sp-list-items--row__item">日時指定注文の未発送箱数</li>
+      <li class="list-items--row__item sp-list-items--row__item"></li>
+    </ul>
+    <%= render @users %>
+  </ul>
+</div>

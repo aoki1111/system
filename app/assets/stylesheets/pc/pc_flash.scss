@@ -1,0 +1,41 @@
+@media screen and (min-width:813px) {
+	.alert {
+		margin: 10px;
+		position: absolute;
+		left:50%;
+		transform: translateX(-50%);
+		z-index: 99;
+		opacity: 1;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		box-sizing: border-box;
+		border-radius: 5px;
+		width:50%;
+		height:60px;
+		animation: flash-fadeout 1s linear 3s 1;
+		animation-fill-mode: forwards;
+		color:white;
+		ul {
+			margin:0;
+		}
+	}
+	
+	.alert-info {
+		background-color:rgba(#45a0e6, 1);
+	}
+	
+	.alert-success {
+		background-color:rgba(#008001, 1);
+	}
+	
+	.alert-danger {
+		background-color: rgba(#f93a3a, 0.7);
+	}
+	
+	@keyframes flash-fadeout {
+		0%   {  opacity:1;height:60px;}
+		99%  {  opacity:0;height:60px;}
+		100% {  opacity:0;height:0;}
+	}
+}

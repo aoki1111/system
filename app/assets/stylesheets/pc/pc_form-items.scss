@@ -1,0 +1,21 @@
+@media screen and (min-width: 813px) {
+  .form {
+    width: 100%;
+    background-color:white;
+    align-self: center;
+  }
+  .form__select-items {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .form__select-items__item--label {
+    font-size: 1.6rem;
+    flex: 1;
+    text-align: center;
+  }
+  .form__select-items__item--select {
+    width: 400px;
+  }
+}

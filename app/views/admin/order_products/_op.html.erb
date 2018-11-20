@@ -1,0 +1,61 @@
+<% if op.order_list.sending_address.present? %>
+<% sending_address = op.order_list.sending_address %>
+<% else %>
+<% sending_address = op.order_list.buyer_address %>
+<% end %>
+<% if op.shipment_danger %>
+<ul class="list-items--row sp-list-items--row danger">
+<% elsif op.shipment_caution %>
+<ul class="list-items--row sp-list-items--row caution">
+<% else %>
+<ul class="list-items--row sp-list-items--row">
+<% end %>
+	<li class="list-items--row__item sp-list-items--row__item">
+		<% if params[:desired_delivery] == "true" %>
+		<%= op.order_list.buyer_address.shipment_date %><br/><%= op.order_list.buyer_address.shipment_time %>
+		<% else %>
+		<%= op.bought_time.strftime('%Y年%m月%d日 %H:%M') %>
+		<% end %>
+	</li>
+	<li class="list-items--row__item sp-list-items--row__item">
+		<%= op.product.name %>
+	</li>
+	<li class="list-items--row__item sp-list-items--row__item quantity">
+		<%= op.quantity %>
+	</li>
+	<li class="list-items--row__item sp-list-items--row__item">
+		<%= sending_address.lastname %><%= sending_address.firstname %>
+	</li>
+	<li class="list-items--row__item sp-list-items--row__item sending-address">
+		<%= sending_address.pref %><%= sending_address.city %><%= sending_address.street %><br/><%= sending_address.building %>
+	</li>
+	<li class="list-items--row__item sp-list-items--row__item quantity">
+		<% if op.order_list.payment.paid %>
+		<span><%= icon('far', 'circle') %></span>
+		<% else %>
+		<span><%= icon('fas', 'times') %></span>
+		<% end %>
+	</li>
+	<li class="list-items--row__item sp-list-items--row__item">
+		<% if op.order_list.buyer_address.desired_delivery %>
+		<%= icon('far', 'circle') %>
+		<% else %>
+		<%= icon('fas', 'times') %>
+		<% end %>
+	</li>
+	<li class="list-items--row__item sp-list-items--row__item">
+		<% if op.trailing_id.present? %>
+		<span>発送済み</span>
+		<% else %>
+		<span>未発送</span>
+		<% end %>
+	</li>
+	<li class="list-items--row__item sp-list-items--row__item button">
+		<%= link_to "編集", edit_admin_order_product_path(op) %>
+	</li>
+	<li class="list-items--row__item sp-list-items--row__item button">
+		<%= link_to "#" do %>
+			<%= icon('far', 'comments') %>
+		<% end %>
+	</li>
+</ul>

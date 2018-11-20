@@ -1,0 +1,19 @@
+@mixin box_sizing {
+	-moz-box-sizing:    border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing:         border-box;
+}
+
+@mixin button-color($theme-color: #ff6600, $font-color:#ffffff) {
+  @media screen and (max-width: 812px) {
+    border: solid 1px $theme-color;
+    color: $font-color;
+    .rp-effect {
+      background: $theme-color;// 波紋色
+    }
+  }
+  @media screen and (min-width: 813px) {
+    background-color: $theme-color;
+    color: $font-color;
+  }
+}

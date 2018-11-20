@@ -1,0 +1,22 @@
+@media screen and (min-width: 813px) {
+  .field_with_errors {
+    label {
+      color: red;
+    }
+    input {
+      width: 100%;
+      box-shadow: 0px 0px 0 1px red inset;
+    }
+    select {
+      width: 100%;
+      box-shadow: 0px 0px 0 1px red inset;
+    }
+  }
+  .error-message__items {
+    padding-left: 10px;
+  }
+  .error-message__items__item {
+    font-size:12px;
+    color:red;
+  }
+}

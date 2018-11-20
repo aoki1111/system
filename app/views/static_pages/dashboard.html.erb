@@ -1,7 +1,7 @@
 <% provide(:title, "ダッシュボード") %>
 
 <div class="side">
-
+	<%= render 'layouts/dashboard_sidebar' %>
 </div>
 <div class="main dashboard">
 	<%= form_tag('/search_unship_order', {:method => "get", :class => "search-query-form"}) do %>

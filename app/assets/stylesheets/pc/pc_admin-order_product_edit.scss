@@ -1,0 +1,23 @@
+@import "../mixins.scss";
+@media screen and (min-width: 813px) {
+  .admin-order-product_edit {
+    > div {
+      width:80%;
+      background-color: white;
+      padding:10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.26);
+      display: flex;
+      flex-direction: column;
+      align-self: center;
+    }
+    .list-items--row__item.label {
+      flex: 1;
+    }
+    .list-items--row__item.data {
+      width: 400px;
+    }
+    .action-button {
+      @include button-color;
+    }
+  }
+} 
