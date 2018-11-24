@@ -1,0 +1,14 @@
+のうぎょう日誌
+
+新着メッセージが届いています。
+投稿日時：<%= @message.created_at.strftime("%m月%d日 %H:%M") %>
+投稿者　：<%= @send_user.corporate_name %>
+投稿内容：<%= @message.content %>
+
+下記のURLからメッセージボードへアクセスできます。
+<%= room_url(@room) %>
+
+本メールは送信専用です。
+こちらのメールに対しての返信は対応しておりません。
+
+copyright &copy; 2018 AFTECH Co.,Ltd. All Right Reserved.

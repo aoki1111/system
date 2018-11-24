@@ -1,0 +1,22 @@
+@media screen and (min-width:813px) {
+  .error-container {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+	}
+	.error__image {
+		width:50%;
+  }
+  .error__messages {
+    align-self:stretch;
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+	.error__messages__content {
+    text-align: center;
+    font-size: 1.6rem;
+	}
+}

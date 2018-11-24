@@ -4,6 +4,7 @@ class Admin::ApplicationController < ApplicationController
 	before_action :admin_user?
 
 	private
+	
 	def admin_login
 		authenticate_or_request_with_http_basic do |user, pass|
 			if Rails.env == "development"

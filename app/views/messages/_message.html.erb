@@ -1,0 +1,11 @@
+<div class="message" id="message<%= message.id %>">
+  <div class="message__info">
+    <p class="message__info--created"><%= message.user.corporate_name %>　<%= message.created_at.strftime("%m月%d日 %H:%M") %></p>
+    <% if message.user.id == current_user.id %>
+    <%= link_to message_path(message), method: :delete, class:"message__info--delete-icon", data: { confirm: "メッセージを削除してもよろしいですか？" } do %>
+    <%= icon('fas', 'trash') %>
+    <% end %>
+    <% end %>
+  </div>
+  <%= simple_format(h(message.content), class:"message__content") %>
+</div>

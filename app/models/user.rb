@@ -25,6 +25,9 @@ class User < ApplicationRecord
 	has_many :postages, dependent: :destroy
 	has_many :product_items, dependent: :destroy
 	has_many :products, through: :product_items, class_name:"EcData::Product", source: :product
+	has_many :room_managers
+	has_many :rooms, through: :room_managers
+	has_many :messages
 
 	class << self
 		def digest(string)

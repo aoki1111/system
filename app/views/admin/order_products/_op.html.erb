@@ -11,11 +11,7 @@
 <ul class="list-items--row sp-list-items--row">
 <% end %>
 	<li class="list-items--row__item sp-list-items--row__item">
-		<% if params[:desired_delivery] == "true" %>
-		<%= op.order_list.buyer_address.shipment_date %><br/><%= op.order_list.buyer_address.shipment_time %>
-		<% else %>
 		<%= op.bought_time.strftime('%Y年%m月%d日 %H:%M') %>
-		<% end %>
 	</li>
 	<li class="list-items--row__item sp-list-items--row__item">
 		<%= op.product.name %>
@@ -38,7 +34,7 @@
 	</li>
 	<li class="list-items--row__item sp-list-items--row__item">
 		<% if op.order_list.buyer_address.desired_delivery %>
-		<%= icon('far', 'circle') %>
+		<%= op.order_list.buyer_address.shipment_date %><br/><%= op.order_list.buyer_address.shipment_time %>
 		<% else %>
 		<%= icon('fas', 'times') %>
 		<% end %>
@@ -54,8 +50,17 @@
 		<%= link_to "編集", edit_admin_order_product_path(op) %>
 	</li>
 	<li class="list-items--row__item sp-list-items--row__item button">
-		<%= link_to "#" do %>
-			<%= icon('far', 'comments') %>
+		<% if op.room.nil? %>
+			<% room = Room.new %>
+			<% user_id = params[:id] || params[:user_id] %>
+			<%= form_for(room, :url => admin_user_rooms_path(user_id: user_id)) do | f | %>
+				<%= f.hidden_field :order_product_id, value:op.id %>
+				<button type="submit" class="form__items__item--icon-button"><%= icon('far', 'comments') %></button>
+			<% end %>
+		<% else %>
+			<%= link_to room_path(op.room) do %>
+				<%= icon('far', 'comments') %>
+			<% end %>
 		<% end %>
 	</li>
 </ul>

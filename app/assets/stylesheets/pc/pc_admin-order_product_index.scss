@@ -15,20 +15,24 @@
     .danger {
       background-color: #ff4747;
       color: white;
-      a {
+      a, button {
         color: white;
+        cursor: pointer;
       }
-      a:hover {
+      a:hover, button:hover {
         color: black;
+        cursor: pointer;
       }
     }
     .caution {
       background-color: #ffdd47;
-      a {
+      a, button {
         color: #222222;
+        cursor: pointer;
       }
-      a:hover {
+      a:hover, button:hover {
         color: #ffffff;
+        cursor: pointer;
       }
     }
   }

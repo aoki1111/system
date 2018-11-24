@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+	mount ActionCable.server => '/cable'
 
 	root 'static_pages#home'
 	get '/home', to: 'static_pages#home'
@@ -20,11 +21,19 @@ Rails.application.routes.draw do
 	post '/shipments/stocks/complete', to: 'stocks#complete'
 	resources :postages, path: 'shipments/postages'
 	resources :password_resets, only: [:new, :create, :edit, :update]
+	resources :users, shallow: true do
+		resources :rooms, shallow: true do
+			resources :messages
+		end
+	end
 
 	namespace :admin do
-			resources :users, shallow: true do
-				resources :stocks, :postages, :order_products
-			end
-			get 'order_products/update_shipment_week/:farmer_id', to: 'order_products#update_shipment_week'
+		resources :postages, :stocks
+		resources :users, shallow: true do
+			resources :order_products, :rooms
+		end
+		get 'order_products/update_shipment_week/:farmer_id', to: 'order_products#update_shipment_week'
 	end
+	get '*not_found' => 'application#routing_error'
+  post '*not_found' => 'application#routing_error'
 end

@@ -1,0 +1,53 @@
+<div class="side">
+	<%= render 'layouts/dashboard_sidebar' %>
+</div>
+<div class="main room_show">
+	<ul class="list-items--column">
+		<h2>注文情報</h2>
+		<ul class="list-items--row">
+			<li class="list-items--row__item">購入日時</li>
+			<% if @buyer_address.desired_delivery %>
+			<li class="list-items--row__item">配送指定日時</li>
+			<% end %>
+			<li class="list-items--row__item product-name">注文内容</li>
+			<li class="list-items--row__item quantity">数量</li>
+			<li class="list-items--row__item">購入者氏名</li>
+			<li class="list-items--row__item">送付先氏名</li>
+			<li class="list-items--row__item address">送付先住所</li>
+		</ul>
+		<ul class="list-items--row">
+			<li class="list-items--row__item"><%= @order_product.bought_time.strftime("%m月%d日 %H:%M") %></li>
+			<% if @buyer_address.desired_delivery %>
+			<li class="list-items--row__item"><%= @buyer_address.shipment_date %>　<%= @buyer_address.shipment_time %></li>
+			<% end %>
+			<li class="list-items--row__item product-name"><%= @product.name %></li>
+			<li class="list-items--row__item quantity"><%= @order_product.quantity %></li>
+			<li class="list-items--row__item"><%= @buyer_address.lastname %><%= @buyer_address.firstname %></li>
+			<li class="list-items--row__item"><%= @sending_address.lastname %><%= @sending_address.firstname %></li>
+			<li class="list-items--row__item address"><%= @sending_address.pref %><%= @sending_address.city %><%= @sending_address.street %><%= @sending_address.building %></li>
+		</ul>
+	</ul>
+	<div class="message-container">
+		<h2>メッセージボード</h2>
+		<div class="button-container">
+			<button onclick="MessageScrollUp()"><%= icon('fas','arrow-up') %>最上部へ</button>
+			<button onclick="MessageScrollDown()"><%= icon('fas','arrow-down') %>最下部へ</button>
+		</div>
+		<div id="messages">
+			<%= render @messages %>
+		</div>
+	</div>
+	<%= form_for( @message , remote: true, url: room_messages_path(@room) ,html: {class: "chat-form"}) do |f| %>
+		<%= f.text_area :content, class: "chat-form__text-area" %>
+		<%= f.hidden_field :room_id, value: params[:id] %>
+		<button type="submit" class="chat-form__submit">送信</button>
+	<% end %>
+</div>
+<script>
+function MessageScrollUp() {
+	$("#messages").animate({scrollTop: 0}, 'fast');
+}
+function MessageScrollDown() {
+	$("#messages").animate({scrollTop: $("#messages")[0].scrollHeight}, 'fast');
+}
+</script>

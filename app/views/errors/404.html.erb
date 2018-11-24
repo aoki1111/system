@@ -1,0 +1,28 @@
+<div class="side">
+	<%= render 'layouts/dashboard_sidebar' %>
+</div>
+<div class="main error">
+	<h1>Sorry...</h1>
+	<h2>404 NotFound</h2>
+	<div class="error-container sp-error-container">
+		<% if Time.now.hour.between?(4,7) %>
+		<%= image_tag("/images/error404_morning.png", alt:"error404", class:"error__image sp-error__image") %>
+		<% elsif Time.now.hour.between?(8,15) %>
+		<%= image_tag("/images/error404_day.png", alt:"error404", class:"error__image sp-error__image") %>
+		<% elsif Time.now.hour.between?(16,19) %>
+		<%= image_tag("/images/error404_evening.png", alt:"error404", class:"error__image sp-error__image") %>
+		<% else %>
+		<%= image_tag("/images/error404_night.png", alt:"error404", class:"error__image sp-error__image") %>
+		<% end %>
+		<div class="error__messages sp-error__messages">
+			<p class="error__messages__content sp-error__messages__content">
+				お探しのページが見つかりませんでした。<br/>
+				URLが正しいかどうかをご確認ください。
+			</p>
+			<p class="error__messages__content sp-error__messages__content">
+				また、問題が頻発する場合はお手数をおかけしますが<br/>
+				該当のページをご連絡をしていただけると幸いです。
+			</p>
+		</div>
+	</div>
+</div>

@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_16_093501) do
+ActiveRecord::Schema.define(version: 2018_11_23_101655) do
+
+  create_table "messages", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "room_id"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_messages_on_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
 
   create_table "postages", force: :cascade do |t|
     t.string "item_type"
@@ -47,6 +57,24 @@ ActiveRecord::Schema.define(version: 2018_09_16_093501) do
     t.index ["product_id"], name: "index_product_items_on_product_id"
     t.index ["user_id", "product_id"], name: "index_product_items_on_user_id_and_product_id", unique: true
     t.index ["user_id"], name: "index_product_items_on_user_id"
+  end
+
+  create_table "room_managers", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "accessed_at"
+    t.index ["room_id"], name: "index_room_managers_on_room_id"
+    t.index ["user_id"], name: "index_room_managers_on_user_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.integer "order_product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "posted_at"
+    t.index ["order_product_id"], name: "index_rooms_on_order_product_id"
   end
 
   create_table "stocks", force: :cascade do |t|

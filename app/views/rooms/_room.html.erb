@@ -1,0 +1,7 @@
+<ul class="list-items--row">
+	<li class="list-items--row__item"><%= room.room_name %></li>
+	<li class="list-items--row__item"><%= room.last_sender %></li>
+	<li class="list-items--row__item"><%= room.posted_at.strftime("%Y年%m月%d日 %H:%M") %></li>
+	<li class="list-items--row__item"><%= room.unread_count(@user) %></li>
+	<li class="list-items--row__item"><%= link_to "詳細", room_path(room) %></li>
+</ul>

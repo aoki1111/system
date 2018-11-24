@@ -1,0 +1,26 @@
+<div class="side">
+	<%= render 'layouts/dashboard_sidebar' %>
+</div>
+<div class="main error">
+	<h1>Sorry...</h1>
+	<h2>500 InternalServerError</h2>
+	<div class="error-container sp-error-container">
+		<% if Time.now.hour.between?(4,7) %>
+		<%= image_tag("/images/error500_morning.png", alt:"error500", class:"error__image sp-error__image") %>
+		<% elsif Time.now.hour.between?(8,15) %>
+		<%= image_tag("/images/error500_day.png", alt:"error500", class:"error__image sp-error__image") %>
+		<% elsif Time.now.hour.between?(16,19) %>
+		<%= image_tag("/images/error500_evening.png", alt:"error500", class:"error__image sp-error__image") %>
+		<% else %>
+		<%= image_tag("/images/error500_night.png", alt:"error500", class:"error__image sp-error__image") %>
+		<% end %>
+		<div class="error__messages sp-error__messages">
+			<p class="error__messages__content sp-error__messages__content">
+			システム上のエラーが発生したようです。<br/>
+			お手数をおかけして大変申し訳ございませんが<br/>
+			問題の解決のためにお問い合わせ等から<br/>
+			ご連絡をしていただけると幸いです。
+			</p>
+		</div>
+	</div>
+</div>

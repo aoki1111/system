@@ -3,6 +3,7 @@ module EcData
 		belongs_to :stock, class_name:"Stock"
 		belongs_to :order_list, class_name:"EcData::OrderList"
 		belongs_to :product, class_name:"EcData::Product"
+		has_one :room
 
 		def shipment_danger
 			return (order_list.payment.paid && bought_time.since(10.day).past? && trailing_id.nil?) || (order_list.payment.paid && order_list.buyer_address.desired_delivery && order_list.buyer_address.desired_delivery_date.ago(2.day).past?)
