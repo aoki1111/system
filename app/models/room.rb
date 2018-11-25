@@ -18,7 +18,7 @@ class Room < ApplicationRecord
 	
 	def send_notification(message:, send_user:)
 		received_user = User.find(received_user_id(send_user))
-		MessageNotificationMailer.new_message(message:message, send_user:send_user, received_user:received_user)
+		MessageNotificationMailer.new_message(message:message, send_user:send_user, received_user:received_user).deliver_now
 	end
 	
 	def received_user_id(send_user_id)

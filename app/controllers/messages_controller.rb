@@ -3,14 +3,14 @@ class MessagesController < ApplicationController
     room = Room.find(params[:room_id])
     user = current_user
     @message = user.messages.build(message_params)
-    respond_to do |format|
-      if @message.save
-        room.update_attributes(posted_at: @message.created_at)
-        room.send_notification(message: @message, send_user: user)
+    if @message.save
+      room.update_attributes(posted_at: @message.created_at)
+      room.send_notification(message: @message, send_user: user)
+      respond_to do |format|
         format.html { redirect_to room}
         format.js
-      else
       end
+    else
     end
   end
 
