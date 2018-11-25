@@ -10,7 +10,7 @@ class Admin::ApplicationController < ApplicationController
 			if Rails.env == "development"
 				user == "admin" && pass == "password"
 			else
-				user == ENV[ADMIN_LOGIN_PASSWORD] && pass == ENV[ADMIN_LOGIN_PASSWORD]
+				user == ENV[ADMIN_LOGIN_NAME] && pass == ENV[ADMIN_LOGIN_PASSWORD]
 			end
 		end
 	end
