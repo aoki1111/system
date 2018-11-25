@@ -1,4 +1,9 @@
 ja:
+    order_product:
+        priority:
+            normal: '通常'
+            high: '優先' 
+            top: '最優先'
     activerecord:
         attributes:
             user:

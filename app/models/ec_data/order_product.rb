@@ -5,12 +5,14 @@ module EcData
 		belongs_to :product, class_name:"EcData::Product"
 		has_one :room
 
+		enum priority: { normal: 0, high: 1, top: 2 }
+
 		def shipment_danger
-			return (order_list.payment.paid && bought_time.since(10.day).past? && trailing_id.nil?) || (order_list.payment.paid && order_list.buyer_address.desired_delivery && order_list.buyer_address.desired_delivery_date.ago(2.day).past?)
+			return (priority == "top") || (order_list.payment.paid && bought_time.since(10.day).past? && trailing_id.nil?) || (order_list.payment.paid && order_list.buyer_address.desired_delivery && order_list.buyer_address.desired_delivery_date.ago(2.day).past?)
 		end
 
 		def shipment_caution
-			return (order_list.payment.paid && bought_time.since(7.day).past? && trailing_id.nil?) || (order_list.payment.paid && order_list.buyer_address.desired_delivery && order_list.buyer_address.desired_delivery_date.ago(5.day).past?)
+			return (priority == "high") || (order_list.payment.paid && bought_time.since(7.day).past? && trailing_id.nil?) || (order_list.payment.paid && order_list.buyer_address.desired_delivery && order_list.buyer_address.desired_delivery_date.ago(5.day).past?)
 		end
 
 		def send_shipment_complete(user)

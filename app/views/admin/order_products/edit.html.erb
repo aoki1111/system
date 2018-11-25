@@ -52,6 +52,10 @@
 				<label for="ec_data_order_product_stock_id" class="form__select-items__item--label sp-form__select-items__item--label">登録週</label>
 				<%= f.collection_select :stock_id, @farmer_stocks , :id, :salable, { :selected => @order_product.stock_id}, {:class => "form__select-items__item--select sp-form__select-items__item--select"} %>
 			</div>
+			<div class="form__select-items sp-form__select-items shipment_week">
+				<label for="ec_data_order_product_priority" class="form__select-items__item--label sp-form__select-items__item--label">登録週</label>
+				<%= f.select :priority, EcData::OrderProduct.priorities.map { |k,v| [t("order_product.priority.#{k}"), k]} , {} , {:class => "form__select-items__item--select sp-form__select-items__item--select"} %>
+			</div>
 			<div class="button-container">
 				<button type="submit" class="action-button">
 					<span>更新する</span>

@@ -49,6 +49,6 @@ class Admin::OrderProductsController < Admin::ApplicationController
   private
 
   def op_params
-    params.require(:order_product).permit(:stock_id)
+    params.require(:ec_data_order_product).permit(:stock_id,:priority)
   end
 end
