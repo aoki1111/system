@@ -5,7 +5,7 @@ class Admin::UsersController < Admin::ApplicationController
 
 	def show
 		@user = User.find(params[:id])
-		@order_products = ::EcData::OrderProduct.where(stock_id: @user.stock_ids).where(trailing_id: nil).paginate(page: params[:page], per_page: 10)
+		@order_products = ::EcData::OrderProduct.where(stock_id: @user.stock_ids).where(trailing_id: nil).order("bought_time DESC").paginate(page: params[:page], per_page: 10)
 	end
 	
 	def edit

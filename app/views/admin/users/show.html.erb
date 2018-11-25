@@ -43,5 +43,6 @@
       <li class="list-items--row__item sp-list-items--row__item button"></li>
     </ul>
     <%= render :partial => "/admin/order_products/op", :collection => @order_products %>
+    <%= link_to "注文一覧へ移動", admin_user_order_products_path(@user) %>
   </ul>
 </div>

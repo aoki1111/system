@@ -12,7 +12,7 @@ module EcData
 		end
 
 		def shipment_caution
-			return (priority == "high") || (order_list.payment.paid && order_list.payment.paid.since(7.day).past? && trailing_id.nil?) || (order_list.payment.paid && order_list.buyer_address.desired_delivery && order_list.buyer_address.desired_delivery_date.ago(5.day).past?)
+			return (priority == "high") || (order_list.payment.paid && order_list.payment.paid_at.since(7.day).past? && trailing_id.nil?) || (order_list.payment.paid && order_list.buyer_address.desired_delivery && order_list.buyer_address.desired_delivery_date.ago(5.day).past?)
 		end
 
 		def send_shipment_complete(user)
