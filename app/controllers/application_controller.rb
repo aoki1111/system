@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
 	protect_from_forgery with: :exception
-	before_action :sidebar_unread_count
 	include SessionsHelper
 
 	def product_list
@@ -9,7 +8,7 @@ class ApplicationController < ActionController::Base
 	end
 
 	def sidebar_unread_count
-		@unread_counts = Room.unread_total(current_user)
+	  @unread_counts = Room.unread_total(current_user)
 	end
 
 	# 例外ハンドル
@@ -24,6 +23,10 @@ class ApplicationController < ActionController::Base
 	end
 
 	private
+
+        def logged_in?
+	   return logged_in?
+        end
 
   def _render_404(e = nil)
 		logger.info "Rendering 404 with exception: #{e.message}" if e

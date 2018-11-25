@@ -12,14 +12,41 @@
 
 ActiveRecord::Schema.define(version: 2018_11_23_101655) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "messages", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "room_id"
+    t.bigint "user_id"
+    t.bigint "room_id"
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_messages_on_room_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "lastname"
+    t.string "firstname"
+    t.string "zipcode"
+    t.string "area"
+    t.string "pref"
+    t.string "city"
+    t.string "street"
+    t.string "building"
+    t.string "phone"
+    t.integer "quantity"
+    t.boolean "shipment_complete", default: false
+    t.string "trailing_id"
+    t.bigint "user_id"
+    t.bigint "stock_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["area"], name: "index_orders_on_area"
+    t.index ["stock_id", "created_at"], name: "index_orders_on_stock_id_and_created_at"
+    t.index ["stock_id"], name: "index_orders_on_stock_id"
+    t.index ["user_id", "created_at"], name: "index_orders_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "postages", force: :cascade do |t|
@@ -41,7 +68,7 @@ ActiveRecord::Schema.define(version: 2018_11_23_101655) do
     t.integer "kitakyushu"
     t.integer "minamikyushu"
     t.integer "okinawa"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "area"
@@ -50,7 +77,7 @@ ActiveRecord::Schema.define(version: 2018_11_23_101655) do
   end
 
   create_table "product_items", force: :cascade do |t|
-    t.integer "user_id"
+    t.bigint "user_id"
     t.integer "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -60,8 +87,8 @@ ActiveRecord::Schema.define(version: 2018_11_23_101655) do
   end
 
   create_table "room_managers", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "room_id"
+    t.bigint "user_id"
+    t.bigint "room_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "accessed_at"
@@ -82,13 +109,13 @@ ActiveRecord::Schema.define(version: 2018_11_23_101655) do
     t.integer "shipment_week"
     t.text "remark"
     t.datetime "salable"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "accept_order_count", default: 0
     t.string "pref"
     t.string "area"
-    t.integer "product_id"
+    t.bigint "product_id"
     t.index ["product_id"], name: "index_stocks_on_product_id"
     t.index ["user_id", "product_id", "shipment_week"], name: "index_stocks_on_user_id_and_product_id_and_shipment_week", unique: true
     t.index ["user_id"], name: "index_stocks_on_user_id"
@@ -123,4 +150,13 @@ ActiveRecord::Schema.define(version: 2018_11_23_101655) do
     t.index ["pref"], name: "index_users_on_pref"
   end
 
+  add_foreign_key "messages", "rooms"
+  add_foreign_key "messages", "users"
+  add_foreign_key "orders", "stocks"
+  add_foreign_key "orders", "users"
+  add_foreign_key "postages", "users"
+  add_foreign_key "product_items", "users"
+  add_foreign_key "room_managers", "rooms"
+  add_foreign_key "room_managers", "users"
+  add_foreign_key "stocks", "users"
 end

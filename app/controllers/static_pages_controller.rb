@@ -1,5 +1,6 @@
 class StaticPagesController < ApplicationController
 	before_action :logged_in_user, only: [:dashboard]
+	before_action :sidebar_unread_count, only: [:dashboard]
 	require 'date'
 
 	def home
