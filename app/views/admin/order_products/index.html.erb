@@ -40,5 +40,6 @@
       <li class="list-items--row__item sp-list-items--row__item button"></li>
     </ul>
     <%= render :partial => "op", :collection => @order_products %>
+    <%= will_paginate @order_products %>
   </ul>
 </div>

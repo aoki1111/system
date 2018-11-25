@@ -3,7 +3,7 @@
 		<%= link_to user_rooms_path(current_user) do %>
 			<span class="sidebar--dashboard__items__icon"><%= icon('fas', 'comments') %></span>
 			<span class="sidebar--dashboard__items__text">メッセージ</span>
-			<% if @unread_counts != 0 %>
+			<% if @unread_counts != 0 && @unread_counts.present? %>
 			<span class="sidebar--dashboard__items__notification"><%= @unread_counts %></span>
 			<% end %>
 		<% end %>
