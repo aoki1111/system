@@ -24,10 +24,6 @@ class ApplicationController < ActionController::Base
 
 	private
 
-        def logged_in?
-	   return logged_in?
-        end
-
   def _render_404(e = nil)
 		logger.info "Rendering 404 with exception: #{e.message}" if e
 		if request.format.to_sym == :json
