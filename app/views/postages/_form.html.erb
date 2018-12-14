@@ -1,24 +1,24 @@
 <%= form_for @postage do | f | %>
 <%= f.hidden_field :area, value:current_user.area %>
 <div>
-    <%= f.label :item_type, "発送する商品" %>
-    <% if controller.action_name == "edit" %>
+  <%= f.label :item_type, "発送する商品" %>
+  <% if controller.action_name == "edit" %>
     <% if @postage.item_type == "MiddleBox" %>
     <div>季節の野菜セット</div>
     <% else %>
     <div>未登録の商品です</div>
     <% end %>
     <%= f.hidden_field :item_type, value:@postage.item_type %>
-    <% else %>
+  <% else %>
     <%= f.select :item_type,@postage_list,:include_blank => true %>
-    <% end %>
+  <% end %>
 </div>
 <div class="error_message">
-    <ul>
-        <% @postage.errors.full_messages_for(:item_type).each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-    </ul>
+  <ul>
+    <% @postage.errors.full_messages_for(:item_type).each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
 </div>
 <div>
     <%= f.label :company, "運送会社" %>

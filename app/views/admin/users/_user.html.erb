@@ -1,24 +1,24 @@
 <% unship_count = user.stocks.map { |stock| stock.order_products.eager_load(:order_list, { order_list: :buyer_address }, { order_list: :payment }).where(payments: {paid: true}).where.not(addresses: {desired_delivery: true}).where(trailing_id: nil).pluck(:quantity).sum}.sum %>
 <% desired_delivery_count = user.stocks.map { |stock| stock.order_products.eager_load(:order_list, { order_list: :buyer_address }, { order_list: :payment }).where(payments: {paid: true}).where(addresses: {desired_delivery: true}).where(trailing_id: nil).pluck(:quantity).sum}.sum %>
 <ul class="list-items--row sp-list-items--row">
-	<li class="list-items--row__item sp-list-items--row__item">
-		<%= user.corporate_name %>
-	</li>
-	<li class="list-items--row__item sp-list-items--row__item">
-		<% if unship_count == 0 %>
-			<%= unship_count %>
-		<% else %>
-			<%= link_to "#{unship_count}", admin_user_order_products_path(user_id: user.id, params:{ unship_order: true}) %>
-		<% end %>
-	</li>
-	<li class="list-items--row__item sp-list-items--row__item">
-		<% if desired_delivery_count == 0 %>
-			<%= desired_delivery_count %>
-		<% else %>
-			<%= link_to "#{desired_delivery_count}", admin_user_order_products_path(user_id: user.id, params:{ desired_delivery: true}) %>
-		<% end %>
-	</li>
-	<li class="list-items--row__item sp-list-items--row__item">
-		<%= link_to "詳細", admin_user_path(user) %>
-	</li>
+  <li class="list-items--row__item sp-list-items--row__item">
+    <%= user.corporate_name %>
+  </li>
+  <li class="list-items--row__item sp-list-items--row__item">
+    <% if unship_count == 0 %>
+      <%= unship_count %>
+    <% else %>
+      <%= link_to "#{unship_count}", admin_user_order_products_path(user_id: user.id, params:{ unship_order: true}) %>
+    <% end %>
+  </li>
+  <li class="list-items--row__item sp-list-items--row__item">
+    <% if desired_delivery_count == 0 %>
+      <%= desired_delivery_count %>
+    <% else %>
+      <%= link_to "#{desired_delivery_count}", admin_user_order_products_path(user_id: user.id, params:{ desired_delivery: true}) %>
+    <% end %>
+  </li>
+  <li class="list-items--row__item sp-list-items--row__item">
+    <%= link_to "詳細", admin_user_path(user) %>
+  </li>
 </ul>

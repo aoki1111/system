@@ -1,51 +1,51 @@
 <header>
-    <div class="center brand">
-        <%= link_to root_path , id:"brand-logo" do %><span>のうぎょう日誌</span><% end %>
-    </div>
-    <% if logged_in? %>
-    <ul class="dropdown">
-        <li class="dashboard">
-            <%= link_to dashboard_path do %><%= icon('fas','tachometer-alt') %><span>ダッシュボード</span><% end %>
-        </li>
-        <li class="shipping">
-            <a href=""><%= icon('fas', 'box') %><%= icon('fas', 'box-open') %><span class="drop-anime">出荷情報管理</span></a>
-            <ul>
-                <li><%= link_to stocks_path do %><%= icon('far', 'calendar-alt', class:"fa-lg") %><span>出荷予定一覧</span><% end %></li>
-                <li><%= link_to new_stock_path do %><%= icon('far', 'calendar-plus', class:"fa-lg") %><span>出荷予定作成</span><% end %></li>
-                <li><%= link_to postages_path do %><%= icon('fas', 'truck') %><span>送料設定一覧</span><% end %></li>
-            </ul>
-        </li>
-        <li class="growth">
-            <a href=""><%= icon('fas', 'leaf') %><%= icon('fas', 'seedling') %><span class="drop-anime">生産情報管理（開発中）</span></a>
-            <ul>
-                <li><%= link_to "#" do %><%= icon('fas', 'map-signs')  %><span>圃場管理</span><% end %></li>
-                <li><%= link_to "#" do %><%= icon('fas', 'pencil-alt') %><span>生産記録</span><% end %></li>
-            </ul>
-        </li>
-        <li class="gap">
-            <a href=""><%= icon('fas', 'chart-line') %><span class="drop-anime">GAP評価（開発中）</span></a>
-            <ul>
-                <li><%= link_to "#" do %><%= icon('fas', 'calculator')  %><span style="margin-right:1rem;">GAPスコア試算</span><% end %></li>
-                <li><%= link_to "#" do %><%= icon('fas', 'book') %><span>GAPリファレンス</span><% end %></li>
-            </ul>
-        </li>
-        <li class="user">
-            <a href=""><%= icon('fas', 'user') %><span>ユーザーメニュー</span></a>
-            <ul>
-                <li><%= link_to user_path(current_user) do %><%= icon('fas', 'id-card', class:"fa-lg") %><span style="margin-right:2rem;">ユーザー情報</span><% end %></li>
-                <li><%= link_to edit_user_path(current_user) do %><%= icon('fas', 'wrench', class:"fa-lg") %><span>ユーザー情報編集</span><% end %></li>
-                <li><%= link_to logout_path, method: :delete do %><%= icon('fas', 'sign-out-alt', class:"fa-lg") %><span style="margin-right:3rem;">ログアウト</span><% end %></li>
-            </ul>
-        </li>
-    </ul>
-    <% else %>
-    <ul class="unlogged-in-menu">
-        <li><%= link_to introducing_path do %><%= icon('fas', 'box') %></span><span>出荷管理機能</span><% end %> </li>
-        <li><%= link_to introducing_path do %><%= icon('fas', 'leaf') %><span>生産記録機能</span><% end %> </li>
-        <li><%= link_to introducing_path do %><%= icon('fas', 'chart-line') %><span>GAP評価機能</span><% end %> </li>
-        <li><%= link_to "#" do %><span></span><% end %></li>
-        <li id="registry"><%= link_to signup_path do %><span class="glyphicon glyphicon-edit"></span><span>会員登録</span><% end %></li>
-        <li id="login"><%= link_to login_path do %><span class="glyphicon glyphicon glyphicon-log-in"></span><span>ログイン</span><% end %></li>
-    </ul>
-    <% end %>
+  <div class="center brand">
+    <%= link_to root_path , id:"brand-logo" do %><span>のうぎょう日誌</span><% end %>
+  </div>
+  <% if logged_in? %>
+  <ul class="dropdown">
+    <li class="dashboard">
+      <%= link_to dashboard_path do %><%= icon('fas','tachometer-alt') %><span>ダッシュボード</span><% end %>
+    </li>
+    <li class="shipping">
+      <a href=""><%= icon('fas', 'box') %><%= icon('fas', 'box-open') %><span class="drop-anime">出荷情報管理</span></a>
+      <ul>
+        <li><%= link_to stocks_path do %><%= icon('far', 'calendar-alt', class:"fa-lg") %><span>出荷予定一覧</span><% end %></li>
+        <li><%= link_to new_stock_path do %><%= icon('far', 'calendar-plus', class:"fa-lg") %><span>出荷予定作成</span><% end %></li>
+        <li><%= link_to postages_path do %><%= icon('fas', 'truck') %><span>送料設定一覧</span><% end %></li>
+      </ul>
+    </li>
+    <li class="growth">
+      <a href=""><%= icon('fas', 'leaf') %><%= icon('fas', 'seedling') %><span class="drop-anime">生産情報管理（開発中）</span></a>
+      <ul>
+        <li><%= link_to "#" do %><%= icon('fas', 'map-signs')  %><span>圃場管理</span><% end %></li>
+        <li><%= link_to "#" do %><%= icon('fas', 'pencil-alt') %><span>生産記録</span><% end %></li>
+      </ul>
+    </li>
+    <li class="gap">
+      <a href=""><%= icon('fas', 'chart-line') %><span class="drop-anime">GAP評価（開発中）</span></a>
+      <ul>
+        <li><%= link_to "#" do %><%= icon('fas', 'calculator')  %><span style="margin-right:1rem;">GAPスコア試算</span><% end %></li>
+        <li><%= link_to "#" do %><%= icon('fas', 'book') %><span>GAPリファレンス</span><% end %></li>
+      </ul>
+    </li>
+    <li class="user">
+      <a href=""><%= icon('fas', 'user') %><span>ユーザーメニュー</span></a>
+      <ul>
+        <li><%= link_to user_path(current_user) do %><%= icon('fas', 'id-card', class:"fa-lg") %><span style="margin-right:2rem;">ユーザー情報</span><% end %></li>
+        <li><%= link_to edit_user_path(current_user) do %><%= icon('fas', 'wrench', class:"fa-lg") %><span>ユーザー情報編集</span><% end %></li>
+        <li><%= link_to logout_path, method: :delete do %><%= icon('fas', 'sign-out-alt', class:"fa-lg") %><span style="margin-right:3rem;">ログアウト</span><% end %></li>
+      </ul>
+    </li>
+  </ul>
+  <% else %>
+  <ul class="unlogged-in-menu">
+    <li><%= link_to introducing_path do %><%= icon('fas', 'box') %></span><span>出荷管理機能</span><% end %> </li>
+    <li><%= link_to introducing_path do %><%= icon('fas', 'leaf') %><span>生産記録機能</span><% end %> </li>
+    <li><%= link_to introducing_path do %><%= icon('fas', 'chart-line') %><span>GAP評価機能</span><% end %> </li>
+    <li><%= link_to "#" do %><span></span><% end %></li>
+    <li id="registry"><%= link_to signup_path do %><span class="glyphicon glyphicon-edit"></span><span>会員登録</span><% end %></li>
+    <li id="login"><%= link_to login_path do %><span class="glyphicon glyphicon glyphicon-log-in"></span><span>ログイン</span><% end %></li>
+  </ul>
+  <% end %>
 </header>

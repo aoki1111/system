@@ -1,5 +1,5 @@
 module EcData
-    class User < EcData::Base
-        self.primary_key = "id"
-    end
+  class User < EcData::Base
+    self.primary_key = "id"
+  end
 end

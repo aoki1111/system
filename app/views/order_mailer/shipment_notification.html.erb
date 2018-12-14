@@ -1,45 +1,43 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd" />
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
 <%= render partial: 'mailer_layouts/template_head' %>
-    <body>
-        <% provide(:header_title,"Shipping Now！") %>
-        <%= render partial: 'mailer_layouts/template_header' %>
-        <table width="100%" height="700" border="0" cellpadding="0" cellspacing="0" style="width:100%;height:700px;border:none;margin:0;">
-            <tr>
-                <td width="5%" align="center" border="0" cellpadding="0" cellspacing="0" style="width:5%;text-align:center;border:none;margin:0;color:black;">
-
-                </td>
-                <td width="90%" align="left" border="0" cellpadding="0" cellspacing="0" style="width:100%;text-align:left;border:none;margin:0;color:black;">
-                    <p style="margin:0;font-size:15px;"><%= @buyer_address.lastname %><%= @buyer_address.firstname %>様、この度はAftechShopでお買い上げいただきありがとうございます。</p>
-                    <p style="margin:0;font-size:15px;"><%= @buyer_address.lastname %><%= @buyer_address.firstname %>様のご注文された商品が発送されました。</p>
-                    <p style="margin:0;font-size:15px;">下記の伝票番号から商品の配送状況を確認可能です。</p>
-                </td>
-                <td width="5%" align="center" border="0" cellpadding="0" cellspacing="0" style="width:5%;text-align:center;border:none;margin:0;color:black;">
-                </td>
-            </tr>
-            <tr>
-                <td width="5%" align="center" border="0" cellpadding="0" cellspacing="0" style="width:5%;text-align:center;border:none;margin:0;color:black;">
-                </td>
-                <td width="90%" align="left" border="0" cellpadding="0" cellspacing="0" style="width:100%;text-align:left;border:none;margin:0;color:black;">
-                    <p>【配送商品】　　　：<%= @product.name %></p>
-                    <p>【数量】　　　　　：<%= @order.quantity %></p>
-                    <% if @postage.company == "Yamato" %>
-                    <p>【伝票番号】　　　：ヤマト運輸<%= link_to "#{@order.trailing_id}", "http://jizen.kuronekoyamato.co.jp/jizen/servlet/crjz.b.NQ0010?id=#{@order.trailing_id}" %></p>
-                    <% elsif @postage.company == "Sagawa" %>
-                     <p>【伝票番号】　　　：佐川急便<%= link_to "#{@order.trailing_id}", "http://k2k.sagawa-exp.co.jp/p/web/okurijosearch.do?okurijoNo=#{@order.trailing_id}" %></p>
-                    <% elsif @postage.company == "Jp" %>
-                    <p>【伝票番号】　　　：日本郵便<%= link_to "#{@order.trailing_id}", "http://tracking.post.japanpost.jp/service/singleSearch.do?org.apache.struts.taglib.html.TOKEN=&searchKind=S002&locale=ja&SVID=&reqCodeNo1=#{@order.trailing_id}" %></p>
-                    <% else %>
-                    <p>【伝票番号】　　　：その他<%= @order.trailing_id %></p>
-                    <% end %>
-                    <p>【郵便番号】　　　：<%= @sending_address.zipcode.insert(3,'-') %></p>
-                    <p>【送付先住所】　　：<%= @sending_address.pref %><%= @sending_address.city %><%= @sending_address.street %><%= @sending_address.building %></p>
-                    <p>【送付先電話番号】：<%= @sending_address.phone %></p>
-                </td>
-                <td width="5%" align="center" border="0" cellpadding="0" cellspacing="0" style="width:5%;text-align:center;border:none;margin:0;color:black;">
-                </td>
-            </tr>
-        </table>
-        <%= render partial: 'mailer_layouts/template_footer' %>
-    </body>
+  <body>
+    <% provide(:header_title,"Shipping Now！") %>
+    <%= render partial: 'mailer_layouts/template_header' %>
+    <table width="100%" height="700" border="0" cellpadding="0" cellspacing="0" style="width:100%;height:700px;border:none;margin:0;">
+      <tr>
+        <td width="5%" align="center" border="0" cellpadding="0" cellspacing="0" style="width:5%;text-align:center;border:none;margin:0;color:black;"></td>
+        <td width="90%" align="left" border="0" cellpadding="0" cellspacing="0" style="width:100%;text-align:left;border:none;margin:0;color:black;">
+          <p style="margin:0;font-size:15px;"><%= @buyer_address.lastname %><%= @buyer_address.firstname %>様、この度はAftechShopでお買い上げいただきありがとうございます。</p>
+          <p style="margin:0;font-size:15px;"><%= @buyer_address.lastname %><%= @buyer_address.firstname %>様のご注文された商品が発送されました。</p>
+          <p style="margin:0;font-size:15px;">下記の伝票番号から商品の配送状況を確認可能です。</p>
+        </td>
+        <td width="5%" align="center" border="0" cellpadding="0" cellspacing="0" style="width:5%;text-align:center;border:none;margin:0;color:black;">
+        </td>
+      </tr>
+      <tr>
+        <td width="5%" align="center" border="0" cellpadding="0" cellspacing="0" style="width:5%;text-align:center;border:none;margin:0;color:black;">
+        </td>
+        <td width="90%" align="left" border="0" cellpadding="0" cellspacing="0" style="width:100%;text-align:left;border:none;margin:0;color:black;">
+          <p>【配送商品】　　　：<%= @product.name %></p>
+          <p>【数量】　　　　　：<%= @order.quantity %></p>
+          <% if @postage.company == "Yamato" %>
+          <p>【伝票番号】　　　：ヤマト運輸<%= link_to "#{@order.trailing_id}", "http://jizen.kuronekoyamato.co.jp/jizen/servlet/crjz.b.NQ0010?id=#{@order.trailing_id}" %></p>
+          <% elsif @postage.company == "Sagawa" %>
+          <p>【伝票番号】　　　：佐川急便<%= link_to "#{@order.trailing_id}", "http://k2k.sagawa-exp.co.jp/p/web/okurijosearch.do?okurijoNo=#{@order.trailing_id}" %></p>
+          <% elsif @postage.company == "Jp" %>
+          <p>【伝票番号】　　　：日本郵便<%= link_to "#{@order.trailing_id}", "http://tracking.post.japanpost.jp/service/singleSearch.do?org.apache.struts.taglib.html.TOKEN=&searchKind=S002&locale=ja&SVID=&reqCodeNo1=#{@order.trailing_id}" %></p>
+          <% else %>
+          <p>【伝票番号】　　　：その他<%= @order.trailing_id %></p>
+          <% end %>
+          <p>【郵便番号】　　　：<%= @sending_address.zipcode.insert(3,'-') %></p>
+          <p>【送付先住所】　　：<%= @sending_address.pref %><%= @sending_address.city %><%= @sending_address.street %><%= @sending_address.building %></p>
+          <p>【送付先電話番号】：<%= @sending_address.phone %></p>
+        </td>
+        <td width="5%" align="center" border="0" cellpadding="0" cellspacing="0" style="width:5%;text-align:center;border:none;margin:0;color:black;">
+        </td>
+      </tr>
+    </table>
+    <%= render partial: 'mailer_layouts/template_footer' %>
+  </body>
 </html>

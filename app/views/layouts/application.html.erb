@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
-	<%= render 'layouts/head' %>
-	<body ontouchstart="" data-controller="<%= controller_name %>" data-action="<%= action_name %>">
-		<div class="contents">
-			<%= render 'layouts/header' %>
-			<div class="container">
-				<%= render 'layouts/flash' %>
-				<%= yield %>
-			</div>
-		</div>
-		<%= render 'layouts/footer' %>
-	</body>
+  <%= render 'layouts/head' %>
+  <body ontouchstart="" data-controller="<%= controller_name %>" data-action="<%= action_name %>">
+    <div class="contents">
+      <%= render 'layouts/header' %>
+      <div class="container">
+        <%= render 'layouts/flash' %>
+        <%= yield %>
+      </div>
+    </div>
+    <%= render 'layouts/footer' %>
+  </body>
 </html>

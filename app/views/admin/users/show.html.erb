@@ -1,35 +1,35 @@
 <div class="side">
-	<%= render 'layouts/dashboard_sidebar' %>
+  <%= render 'layouts/dashboard_sidebar' %>
 </div>
 <div class="main admin-user_show">
-	<h1><%= @user.corporate_name %></h1>
-	<ul class="list-items--column sp-list-items--column">
-		<ul class="list-items--row sp-list-items--row">
-			<li class="list-items--row__item sp-list-items--row__item">名前</li>
-			<li class="list-items--row__item sp-list-items--row__item">フリガナ</li>
-			<li class="list-items--row__item sp-list-items--row__item">住所</li>
-			<li class="list-items--row__item sp-list-items--row__item">電話番号</li>
-			<li class="list-items--row__item sp-list-items--row__item">メールアドレス</li>
-		</ul>
-		<ul class="list-items--row sp-list-items--row">
-			<li class="list-items--row__item sp-list-items--row__item"><%= @user.lastname %><%= @user.firstname %></li>
-			<li class="list-items--row__item sp-list-items--row__item"><%= @user.lastname_phonetic %><%= @user.firstname_phonetic %></li>
-			<li class="list-items--row__item sp-list-items--row__item"><%= @user.pref %><%= @user.city %><%= @user.street %><%= @user.building %></li>
-			<li class="list-items--row__item sp-list-items--row__item"><%= @user.phone %></li>
-			<li class="list-items--row__item sp-list-items--row__item"><%= @user.email %></li>
-		</ul>
-	</ul>
-	<ul class="list-items--column sp-list-items--column">
-		<ul class="list-items--row sp-list-items--row">
-			<li class="list-items--row__item sp-list-items--row__item label">生産品目一覧</li>
-			<li class="list-items--row__item sp-list-items--row__item data">生産品目の一覧を設定できるようにする予定</li>
-		</ul>	
-		<ul class="list-items--row sp-list-items--row">
-			<li class="list-items--row__item sp-list-items--row__item label">今月の生産品目</li>
-			<li class="list-items--row__item sp-list-items--row__item data">今月の生産品目の一覧を設定できるようにする予定</li>
-		</ul>
-	</ul>
-	<ul class="list-items--column sp-list-items--column">
+  <h1><%= @user.corporate_name %></h1>
+  <ul class="list-items--column sp-list-items--column">
+    <ul class="list-items--row sp-list-items--row">
+      <li class="list-items--row__item sp-list-items--row__item">名前</li>
+      <li class="list-items--row__item sp-list-items--row__item">フリガナ</li>
+      <li class="list-items--row__item sp-list-items--row__item">住所</li>
+      <li class="list-items--row__item sp-list-items--row__item">電話番号</li>
+      <li class="list-items--row__item sp-list-items--row__item">メールアドレス</li>
+    </ul>
+    <ul class="list-items--row sp-list-items--row">
+      <li class="list-items--row__item sp-list-items--row__item"><%= @user.lastname %><%= @user.firstname %></li>
+      <li class="list-items--row__item sp-list-items--row__item"><%= @user.lastname_phonetic %><%= @user.firstname_phonetic %></li>
+      <li class="list-items--row__item sp-list-items--row__item"><%= @user.pref %><%= @user.city %><%= @user.street %><%= @user.building %></li>
+      <li class="list-items--row__item sp-list-items--row__item"><%= @user.phone %></li>
+      <li class="list-items--row__item sp-list-items--row__item"><%= @user.email %></li>
+    </ul>
+  </ul>
+  <ul class="list-items--column sp-list-items--column">
+    <ul class="list-items--row sp-list-items--row">
+      <li class="list-items--row__item sp-list-items--row__item label">生産品目一覧</li>
+      <li class="list-items--row__item sp-list-items--row__item data">生産品目の一覧を設定できるようにする予定</li>
+    </ul>	
+    <ul class="list-items--row sp-list-items--row">
+      <li class="list-items--row__item sp-list-items--row__item label">今月の生産品目</li>
+      <li class="list-items--row__item sp-list-items--row__item data">今月の生産品目の一覧を設定できるようにする予定</li>
+    </ul>
+  </ul>
+  <ul class="list-items--column sp-list-items--column">
     <ul class="list-items--row sp-list-items--row">
       <li class="list-items--row__item sp-list-items--row__item">購入日</li>
       <li class="list-items--row__item sp-list-items--row__item">商品名</li>

@@ -16,7 +16,7 @@
 		<div class="data">：<%= order_product.order_list.bought_time.strftime("%m月%d日 %H:%M") %></div>
 	</div>
 	<% if order_product.order_list.buyer_address.desired_delivery %>
-	<div style="background-color:red;padding:5px 0px;">
+	<div style="background-color:red;padding:5px 0px;font-family:'sans-selif';font-weight:bold;">
 		<div class="title" style="color:white;">配送指定日時</div>
 		<div class="data" style="color:white;">：<%= order_product.order_list.buyer_address.desired_delivery_date.strftime("%m月%d日")%>　<%= order_product.order_list.buyer_address.shipment_time %></div>
 	</div>

@@ -1,19 +1,19 @@
 <div class="sidebar--dashboard">
-	<div class="sidebar--dashboard__items">
-		<%= link_to user_rooms_path(current_user) do %>
-			<span class="sidebar--dashboard__items__icon"><%= icon('fas', 'comments') %></span>
-			<span class="sidebar--dashboard__items__text">メッセージ</span>
-			<% if @unread_counts != 0 && @unread_counts.present? %>
-			<span class="sidebar--dashboard__items__notification"><%= @unread_counts %></span>
-			<% end %>
-		<% end %>
-	</div>
-	<% if current_user.admin %>
-	<div class="sidebar--dashboard__items">
-	<%= link_to admin_users_path do %>
-		<span class="sidebar--dashboard__items__icon"><%= icon('fas', 'users') %></span>
-		<span class="sidebar--dashboard__items__text">農家一覧</span>
-	<% end %>
-	</div>
-	<% end %>
+  <div class="sidebar--dashboard__items">
+    <%= link_to user_rooms_path(current_user) do %>
+      <span class="sidebar--dashboard__items__icon"><%= icon('fas', 'comments') %></span>
+      <span class="sidebar--dashboard__items__text">メッセージ</span>
+      <% if @unread_counts != 0 && @unread_counts.present? %>
+      <span class="sidebar--dashboard__items__notification"><%= @unread_counts %></span>
+      <% end %>
+    <% end %>
+  </div>
+  <% if current_user.admin %>
+  <div class="sidebar--dashboard__items">
+  <%= link_to admin_users_path do %>
+    <span class="sidebar--dashboard__items__icon"><%= icon('fas', 'users') %></span>
+    <span class="sidebar--dashboard__items__text">農家一覧</span>
+  <% end %>
+  </div>
+  <% end %>
 </div>
