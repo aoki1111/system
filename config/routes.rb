@@ -27,8 +27,9 @@ Rails.application.routes.draw do
 		end
 	end
 
+
 	namespace :admin do
-		resources :postages, :stocks
+		resources :postages, :stocks,:items
 		resources :users, shallow: true do
 			resources :order_products, :rooms
 		end

@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_23_101655) do
+ActiveRecord::Schema.define(version: 2019_10_15_042820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "items", force: :cascade do |t|
+    t.string "name"
+    t.string "area"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "messages", force: :cascade do |t|
     t.bigint "user_id"
@@ -23,30 +31,6 @@ ActiveRecord::Schema.define(version: 2018_11_23_101655) do
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_messages_on_room_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
-  end
-
-  create_table "orders", force: :cascade do |t|
-    t.string "lastname"
-    t.string "firstname"
-    t.string "zipcode"
-    t.string "area"
-    t.string "pref"
-    t.string "city"
-    t.string "street"
-    t.string "building"
-    t.string "phone"
-    t.integer "quantity"
-    t.boolean "shipment_complete", default: false
-    t.string "trailing_id"
-    t.bigint "user_id"
-    t.bigint "stock_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["area"], name: "index_orders_on_area"
-    t.index ["stock_id", "created_at"], name: "index_orders_on_stock_id_and_created_at"
-    t.index ["stock_id"], name: "index_orders_on_stock_id"
-    t.index ["user_id", "created_at"], name: "index_orders_on_user_id_and_created_at"
-    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "postages", force: :cascade do |t|
@@ -152,8 +136,6 @@ ActiveRecord::Schema.define(version: 2018_11_23_101655) do
 
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
-  add_foreign_key "orders", "stocks"
-  add_foreign_key "orders", "users"
   add_foreign_key "postages", "users"
   add_foreign_key "product_items", "users"
   add_foreign_key "room_managers", "rooms"
