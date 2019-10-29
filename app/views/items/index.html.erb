@@ -1,0 +1,21 @@
+<h1 style="font-size: 500px">商品紹介</h1>
+<div>
+    <table >
+        <thead style="font-size: 250px;">
+            <tr style="background-color: #EEEEEE;">
+                <th style="padding: 1em 1em 1em 1em; border: 1px solid #000; text-align: center; vertical-align: top;">品目</th>
+                <th style="padding: 1em 1em 1em 1em; border: 1px solid #000; text-align: center; vertical-align: top;">地域</th>
+                <th style="padding: 1em 1em 1em 1em; border: 1px solid #000; text-align: center; vertical-align: top;">説明</th>
+            </tr>
+        </thead>
+        <tbody style="font-size: 200px;">
+            <% @items.each do |item| %>
+                <tr style="border: 1px solid, padding: .35em;">
+                    <td style="padding: 1em 10px 1em 1em; border: 1px solid #000; text-align: center; vertical-align: top;"><%= item.item_name %></td>
+                    <td style="padding: 1em 2em 1em 1em; border: 1px solid #000; text-align: center; vertical-align: top;"><%= item.area %></td>
+                    <td style="padding: 1em 10px 1em 1em; border: 1px solid #000; text-align: left; vertical-align: top;"><%= item.description %></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

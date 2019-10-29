@@ -1,0 +1,40 @@
+<h1><%= yield(:header) %></h1>
+<div>
+    <%= f.label :item_name, "品目名" %>
+    <%= f.text_field :item_name, {class: 'form-under-line', :placeholder => "例.人参" }%>
+</div>
+<div class="error_message">
+    <ul>
+        <% @item.errors.full_messages_for(:item_name).each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+    </ul>
+</div>
+
+<div>
+    <%= f.label :area, "地域" %>
+    <%= f.text_field :area, {class: 'form-under-line', :placeholder => "例.東京" }%>
+</div>
+<div class="error_message">
+    <ul>
+        <% @item.errors.full_messages_for(:area).each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+    </ul>
+</div>
+
+<div>
+    <%= f.label :description, "説明" %>
+    <%= f.text_area :description, {class: 'form-under-line' }%>
+</div>
+<div class="error_message">
+    <ul>
+        <% @item.errors.full_messages_for(:description).each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+    </ul>
+</div>
+
+<div class="submit">
+    <%= button_tag do %><%= yield(:button_text) %><% end %>
+</div>

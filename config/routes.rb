@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 	post '/shipments/stocks/complete', to: 'stocks#complete'
 	resources :postages, path: 'shipments/postages'
 	resources :password_resets, only: [:new, :create, :edit, :update]
+	resources :items
 	resources :users, shallow: true do
 		resources :rooms, shallow: true do
 			resources :messages
@@ -29,7 +30,7 @@ Rails.application.routes.draw do
 
 
 	namespace :admin do
-		resources :postages, :stocks,:items
+		resources :postages, :stocks
 		resources :users, shallow: true do
 			resources :order_products, :rooms
 		end
